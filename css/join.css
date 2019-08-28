@@ -1,9 +1,13 @@
+:root {
+    --main-bg-color: #f5f6f7; 
+    --main-primary-color:#37b24d;
+  }
 *{
     box-sizing: border-box;
     font-family:sans-serif;
 }
 body{
-    background:#f5f6f7;
+    background: var(--main-bg-color);
 }
 .wrap{
     width:430px;
@@ -12,7 +16,7 @@ body{
 h1{
     font-size:2rem;
     font-weight: bold;
-    color:#37b24d;
+    color:var(--main-primary-color);
     text-align: center;
     padding:50px 0;
 }
@@ -69,7 +73,7 @@ form .birth .birthform{
 .submit-btn button{
     width:100%;
     margin:0;
-    background:#37b24d;
+    background:var(--main-primary-color);
     color:#fff;
     border:none;
     font-size:1.2rem;
