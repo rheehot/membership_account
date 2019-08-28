@@ -11,55 +11,75 @@
 <body>
     <h1>회원가입</h1>
     <div class="wrap">
-        <div class="id">
-            <h5>아이디</h5>
-            <input type="text" class="input-id">
-        </div>
-        <div class="pw">
-            <h5>비밀번호</h5>
-            <input type="text" class="input-pw">
-        </div>
-        <div class="pwcheck">
-            <h5>비밀번호 재확인</h5>
-            <input type="text" class="input-pwcheck">
-        </div>
-        <div class="name">
-            <h5>이름</h5>
-            <input type="text" class="input-name">
-        </div>
-        <div class="birth">
-            <h5>생년월일</h5>
-            <div class="selectform">
-                <input type="text" class="input-birthyear">
-                <select name="" id="" class="input-birthmonth"></select>
-                <input type="text" class="input-birthday">
+        <form action="">
+            <div class="id">
+                <h5>아이디</h5>
+                <input type="text" class="input-id">
             </div>
-        </div>
-        <div class="gender">
-            <h5>성별</h5>
-            <select name="" id="" class="input-gender"></select>
-        </div>
-        <div class= "email">
-            <h5>이메일</h5>
-            <input type="text" class="input-email">
-        </div>
-        <div class= "number">
-            <h5>휴대전화</h5>
-            <input type="text" class="input-number">
-        </div>
-        <div class= "favorite">
-            <h5>관심사</h5>
-            <input type="text" class="input-favorite">
-        </div>
-        <div class="agreement">
-            <div class="agreecheck">
-                <span>약관에 동의합니다.</span>
+            <div class="pw">
+                <h5>비밀번호</h5>
+                <input type="text" class="input-pw">
             </div>
-        </div>
-        <div class="submit-btn">
-            <button class="reset">초기화</button>
-             <button class="join">가입하기</button>
-        </div>
+            <div class="pwcheck">
+                <h5>비밀번호 재확인</h5>
+                <input type="text" class="input-pwcheck">
+            </div>
+            <div class="name">
+                <h5>이름</h5>
+                <input type="text" class="input-name">
+            </div>
+            <div class="birth">
+                <h5>생년월일</h5>
+                <div class="selectform">
+                    <input type="text" class="input-birthyear" placeholder="년(4자)">
+                    <select name="month"class="input-birthmonth">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                        <option value="11">11</option>
+                        <option value="12">12</option>
+                    </select>
+                    <input type="text" class="input-birthday" placeholder="일">
+                </div>
+            </div>
+            <div class="gender">
+                <h5>성별</h5>
+                <select name="gender" class="input-gender">
+                    <option value="" disabled selected hidden>성별</option>
+                    <option value="여자">여자</option>
+                    <option value="남자">남자</option>
+                </select>
+            </div>
+            <div class= "email">
+                <h5>이메일</h5>
+                <input type="text" class="input-email">
+            </div>
+            <div class= "number">
+                <h5>휴대전화</h5>
+                <input type="text" class="input-number" placeholder="-없이 입력해주세요 예)0101231234">
+            </div>
+            <div class= "favorite">
+                <h5>관심사</h5>
+                <input type="text" class="input-favorite">
+            </div>
+            <div class="agreement">
+                <div class="agreecheck">
+                    <span>약관에 동의합니다.</span>
+                    <input type="checkbox" name="agree" class="input-agree">
+                </div>
+            </div>
+            <div class="submit-btn">
+                <button class="reset">초기화</button>
+                <button class="join">가입하기</button>
+            </div>
+        </form>
     </div>
 </body>
 </html>
