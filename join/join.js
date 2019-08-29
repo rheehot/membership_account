@@ -2,8 +2,14 @@ const showMsg = {
     registerEvent(field, validateObj){
         const target = document.querySelector(`.${field} .inputBox input`);
         target.addEventListener("change", () => {
-            const msg = document.querySelector(`.${field} .error`);
-            msg.innerHTML = validateObj.validate(target.value);
+            const msgField = document.querySelector(`.${field} .error`);
+            const msgObj = validateObj.validate(target.value);
+            msgField.innerHTML = msgObj.msg;
+            if(msgObj.status === 'good'){
+                msgField.style.color = '#37b24d';
+            }else{
+                msgField.style.color = '#f00';
+            }
         })
     }
 }
@@ -11,9 +17,9 @@ const showMsg = {
 const validateID = {
     regExpId: /^[0-9a-z_-]{5,20}$/,
     msg:{
-        taken:'이미 사용중인 아이디입니다.',
-        wrong:'5-20자의 영문 소문자, 숫자와 특수기호(_)(-) 만 사용 가능합니다.',
-        good: '사용가능한 아이디입니다.'
+        taken: {status:'taken', msg:'이미 사용중인 아이디입니다.'},
+        wrong: {status:'wrong', msg:'5-20자의 영문 소문자, 숫자와 특수기호(_)(-) 만 사용 가능합니다.'},
+        good:  {status:'good', msg:'사용가능한 아이디입니다.'}
     },
     validate(id){
         if(!/^[0-9a-z_-]{5,20}$/.test(id)){ return this.msg.wrong; }
@@ -35,12 +41,12 @@ const validatePW = {
         completeErr:/^[A-Za-z0-9\{\}\[\]\/?.,;:|\)*~`!^\-_+<>@\#$%&\\\=\(\'\"]{8,16}$/,
     },
     msg:{
-        lengthErr:'8자 이상 16자 이하로 입력해주세요.',
-        capitalErr:'영문 대문자를 최소 1자 이상 포함해주세요.',
-        numberErr: '숫자를 최소 1자 이상 포함해주세요.',
-        spcErr:'특수문자를 최소 1자 이상 포함해주세요.',
-        completeErr:'8~16자 영문 대 소문자, 숫자, 특수문자를 사용하세요.',
-        good: '안전한 비밀번호입니다.',
+        lengthErr: {status:'lengthErr', msg:'8자 이상 16자 이하로 입력해주세요.'},
+        capitalErr: {status:'capitalErr', msg:'영문 대문자를 최소 1자 이상 포함해주세요.'},
+        numberErr: {status:'numberErr', msg:'숫자를 최소 1자 이상 포함해주세요.'},
+        spcErr: {status:'spcErr', msg:'특수문자를 최소 1자 이상 포함해주세요.'},
+        completeErr: {status:'completeErr', msg:'8~16자 영문 대 소문자, 숫자, 특수문자를 사용하세요.'},
+        good: {status:'good', msg:'안전한 비밀번호입니다.'},
     },
     validate(pw){
         triggerEvent(document.querySelector('.input-pw-reconfirm'),'change');
@@ -55,8 +61,8 @@ const validatePW = {
 
 const reconfirmPW = {
     msg:{
-        wrong:'비밀번호가 일치하지 않습니다.',
-        good: '비밀번호가 일치합니다.'
+        wrong:{status:'wrong', msg:'비밀번호가 일치하지 않습니다.'},
+        good: {status:'good', msg:'비밀번호가 일치합니다.'}
     },
     validate(confirmpw, pw = document.querySelector('.input-pw')){
         if(pw.value === confirmpw ){return this.msg.good}
