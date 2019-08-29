@@ -5,11 +5,7 @@ const showMsg = {
             const msgField = document.querySelector(`.${field} .error`);
             const msgObj = validateObj.validate(target.value);
             msgField.innerHTML = msgObj.msg;
-            if(msgObj.status === 'good'){
-                msgField.style.color = '#37b24d';
-            }else{
-                msgField.style.color = '#f00';
-            }
+            msgField.style.color = msgObj.status !== 'good' ? '#f00': '#37b24d'; 
         })
     }
 }
@@ -22,8 +18,8 @@ const validateID = {
         good:  {status:'good', msg:'사용가능한 아이디입니다.'}
     },
     validate(id){
-        if(!/^[0-9a-z_-]{5,20}$/.test(id)){ return this.msg.wrong; }
-        else if(this.checkDuplication(id)){ return this.msg.taken; }
+        if(!this.regExpId.test(id)) return this.msg.wrong; 
+        else if(this.checkDuplication(id)) return this.msg.taken; 
         else return this.msg.good;
     },
     checkDuplication(id){
@@ -50,12 +46,12 @@ const validatePW = {
     },
     validate(pw){
         triggerEvent(document.querySelector('.input-pw-reconfirm'),'change');
-        if(pw.length < 8 || pw.length > 16){return this.msg.lengthErr}
-        else if(!this.regExpPw.capitalErr.test(pw)){return this.msg.capitalErr}
-        else if(!this.regExpPw.numberErr.test(pw)){return this.msg.numberErr}
-        else if(!this.regExpPw.spcErr.test(pw)){return this.msg.spcErr}
-        else if(!this.regExpPw.completeErr.test(pw)){return this.msg.completeErr}
-        else {return this.msg.good};
+        if(pw.length < 8 || pw.length > 16) return this.msg.lengthErr;
+        else if(!this.regExpPw.capitalErr.test(pw)) return this.msg.capitalErr;
+        else if(!this.regExpPw.numberErr.test(pw)) return this.msg.numberErr;
+        else if(!this.regExpPw.spcErr.test(pw)) return this.msg.spcErr;
+        else if(!this.regExpPw.completeErr.test(pw)) return this.msg.completeErr;
+        else return this.msg.good;
     },
 }
 
@@ -65,9 +61,19 @@ const reconfirmPW = {
         good: {status:'good', msg:'비밀번호가 일치합니다.'}
     },
     validate(confirmpw, pw = document.querySelector('.input-pw')){
-        if(pw.value === confirmpw ){return this.msg.good}
-        else return this.msg.wrong;
+        return pw.value === confirmpw? this.msg.good : this.msg.wrong;
     }
+}
+
+const validateBirth = {
+    msg: { 
+        yearErr: { status:'yearErr', msg:'태어난 년도 4자리를 정확하게 입력하세요.' },
+        ageErr: { status:'ageErr', msg:'만 14세 이상만 가입 가능합니다.' },
+        dateErr: { status:'dateErr', msg:'태어난 날짜를 다시 확인해주세요.' },
+        good: {status:'good', msg:''}
+    }
+
+
 }
 
 showMsg.registerEvent('id', validateID );
