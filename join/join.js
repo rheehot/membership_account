@@ -1,11 +1,13 @@
 const showMsg = {
-    registerEvent(field, validateObj){
-        const target = document.querySelector(`.${field} .inputBox input`);
-        target.addEventListener("change", () => {
-            const msgField = document.querySelector(`.${field} .error`);
-            const msgObj = validateObj.validate(target.value);
-            msgField.innerHTML = msgObj.msg;
-            msgField.style.color = msgObj.status !== 'good' ? '#f00': '#37b24d'; 
+    registerEvent(field, inputType, validateObj){
+        const targets = document.querySelectorAll(`.${field} .inputBox ${inputType}`);
+        targets.forEach(target => {
+            target.addEventListener("change", () => {
+                const msgField = document.querySelector(`.${field} .error`);
+                const msgObj = validateObj.validate(target.value);
+                msgField.innerHTML = msgObj.msg;
+                msgField.style.color = msgObj.status !== 'good' ? '#f00': '#37b24d'; 
+            })
         })
     }
 }
@@ -66,19 +68,41 @@ const reconfirmPW = {
 }
 
 const validateBirth = {
+    regExpYear: /^[0-9]{4}$/,
+    regExpDate: /^[0-9]{1,2}$/,
     msg: { 
         yearErr: { status:'yearErr', msg:'태어난 년도 4자리를 정확하게 입력하세요.' },
         ageErr: { status:'ageErr', msg:'만 14세 이상만 가입 가능합니다.' },
+        monthErr: { status:'monthErr', msg:'태어난 월을 다시 확인해주세요.' },
         dateErr: { status:'dateErr', msg:'태어난 날짜를 다시 확인해주세요.' },
         good: {status:'good', msg:''}
+    },
+    validate(){
+        const year = document.querySelector('.input-year').value;
+        const month = document.querySelector('.input-month').value;
+        const date = document.querySelector('.input-date').value;
+        const lastdate = this.getDateRange(year,month)
+
+        const minYear = new Date().getFullYear()-99;
+        const maxYear = new Date().getFullYear()-15;
+
+        if(!this.regExpYear.test(year)) return this.msg.yearErr;
+        else if(+year < minYear || +year > maxYear ) return this.msg.ageErr;
+        else if(month === '') return this.msg.monthErr;
+        else if( !this.regExpDate.test(date) || +date < 1 || +date > lastdate ) return this.msg.dateErr;
+        else return this.msg.good;
+    },
+    getDateRange(year, month){
+        return new Date(year,month+1,0).getDate();
     }
-
-
 }
 
-showMsg.registerEvent('id', validateID );
-showMsg.registerEvent('pw', validatePW );
-showMsg.registerEvent('pw-reconfirm', reconfirmPW );
+showMsg.registerEvent('id', 'input', validateID );
+showMsg.registerEvent('pw', 'input', validatePW );
+showMsg.registerEvent('pw-reconfirm', 'input', reconfirmPW );
+showMsg.registerEvent('birthform', 'input', validateBirth);
+showMsg.registerEvent('birthform', 'select', validateBirth);
+
 
 function triggerEvent(el, type){
     var e = document.createEvent('HTMLEvents');
