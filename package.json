@@ -1,0 +1,23 @@
+{
+  "name": "membership-login",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aereeeee/membership-login.git"
+  },
+  "author": "aeree cho",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/aereeeee/membership-login/issues"
+  },
+  "homepage": "https://github.com/aereeeee/membership-login#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "jest": "^24.9.0"
+  }
+}

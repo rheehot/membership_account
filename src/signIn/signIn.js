@@ -1,15 +1,5 @@
-<!DOCTYPE html>
-<html lang="ko">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>회원가입</title>
-    <link rel="stylesheet" href="../public/css/reset.css">
-    <link rel="stylesheet" href="../public/css/join.css">
-</head>
-<body>
-    <div class="wrap">
+export const signIn = `
+<div class="wrap-signIn">
         <h1>회원가입</h1>
         <form action="">
             <fieldset>
@@ -73,9 +63,9 @@
                             <div class="inputBox">
                                 <input type="text" class="input-date" placeholder="일">
                             </div>
-                        </div>
-                        <div class="error"></div>
+                        </div> 
                     </div>
+                    <div class="error"></div>
                 </div>
                 <div class="gender">
                     <h5>성별</h5>
@@ -92,12 +82,14 @@
                     <div class="inputBox">
                         <input type="text" class="input-email">
                     </div>
+                    <div class="error"></div>
                 </div>
                 <div class= "number">
                     <h5>휴대전화</h5>
                     <div class="inputBox">
                         <input type="text" class="input-number" placeholder="-없이 입력해주세요 예)0101231234">
                     </div>  
+                    <div class="error"></div>
                 </div>
                 <div class= "favorite">
                     <h5>관심사</h5>
@@ -118,6 +110,4 @@
             </div>
         </form>
     </div>
-    <script src="join.js"></script>
-</body>
-</html>
+    `

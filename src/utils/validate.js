@@ -1,18 +1,22 @@
+import { triggerEvent } from './eventTrigger.js';
+//TODO: magic number 제거
+//TODO: 선택자 의존성 없게 바꾸자 .${field} .inputBox ${inputType}
 const showMsg = {
-    registerEvent(field, inputType, validateObj){
+    init(field, inputType, validateObj){
         const targets = document.querySelectorAll(`.${field} .inputBox ${inputType}`);
-        targets.forEach(target => {
-            target.addEventListener("change", () => {
-                const msgField = document.querySelector(`.${field} .error`);
-                const msgObj = validateObj.validate(target.value);
-                msgField.innerHTML = msgObj.msg;
-                msgField.style.color = msgObj.status !== 'good' ? '#f00': '#37b24d'; 
-            })
+        targets.forEach(target =>this.registerEvent(target, validateObj, field))
+    },
+    registerEvent(target, validateObj, field){
+        target.addEventListener("change", () => {
+            const msgObj = validateObj.validate(target.value);
+            const msgField = document.querySelector(`.${field} .error`);
+            msgField.innerHTML = msgObj.msg;
+            msgField.style.color = msgObj.status !== 'good' ? '#f00': '#37b24d'; 
         })
     }
 }
 
-const validateID = {
+const validID = {
     regExpId: /^[0-9a-z_-]{5,20}$/,
     msg:{
         taken: {status:'taken', msg:'이미 사용중인 아이디입니다.'},
@@ -30,8 +34,8 @@ const validateID = {
     }
 }
 
-//TODO: 반복되는 구문 너무 많다. 개선하자!
-const validatePW = {
+//TODO: if else 안쓸수 있을 것 같은데 어렵다. 고민하자.
+const validPW = {
     regExpPw:{
         capitalErr:/(?=.*[A-Z])/,
         numberErr: /(?=.*[0-9])/,
@@ -67,7 +71,7 @@ const reconfirmPW = {
     }
 }
 
-const validateBirth = {
+const validBirth = {
     regExpYear: /^[0-9]{4}$/,
     regExpDate: /^[0-9]{1,2}$/,
     msg: { 
@@ -81,8 +85,8 @@ const validateBirth = {
         const year = document.querySelector('.input-year').value;
         const month = document.querySelector('.input-month').value;
         const date = document.querySelector('.input-date').value;
-        const lastdate = this.getDateRange(year,month)
 
+        const lastdate = this.getDateRange(year,month);
         const minYear = new Date().getFullYear()-99;
         const maxYear = new Date().getFullYear()-15;
 
@@ -93,19 +97,32 @@ const validateBirth = {
         else return this.msg.good;
     },
     getDateRange(year, month){
-        return new Date(year,month+1,0).getDate();
+        return new Date(year,month,0).getDate();
     }
 }
 
-showMsg.registerEvent('id', 'input', validateID );
-showMsg.registerEvent('pw', 'input', validatePW );
-showMsg.registerEvent('pw-reconfirm', 'input', reconfirmPW );
-showMsg.registerEvent('birthform', 'input', validateBirth);
-showMsg.registerEvent('birthform', 'select', validateBirth);
+const validEmail = {
+    regExpEmail:/^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i,
+    msg:{
+        wrong: { status:'wrong', msg:'이메일 주소를 다시 확인해주세요.' },
+        good: {status:'good', msg:''}
+    },
+    validate(email){
+        if(!this.regExpEmail.test(email)) return this.msg.wrong;
+        else return this.msg.good;
+    }
+}
 
+const validNumber = {
+    regExpNumber: /^(010)\d{3,4}\d{4}$/,
+    msg:{
+        wrong: { status:'wrong', msg:'형식에 맞지 않는 번호입니다.' },
+        good: {status:'good', msg:''}
+    },
+    validate(number){
+        if(!this.regExpNumber.test(number)) return this.msg.wrong;
+        else return this.msg.good;
+    }
+}
 
-function triggerEvent(el, type){
-    var e = document.createEvent('HTMLEvents');
-    e.initEvent(type, false, true);
-    el.dispatchEvent(e);
- }
+export { showMsg, validID, validPW, reconfirmPW, validBirth, validEmail, validNumber };
