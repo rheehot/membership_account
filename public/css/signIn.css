@@ -1,6 +1,7 @@
 :root {
     --main-bg-color: #f5f6f7; 
     --main-primary-color:#37b24d;
+    --main-width: 430px;
   }
 *{
     box-sizing: border-box;
@@ -9,8 +10,8 @@
 body{
     background: var(--main-bg-color);
 }
-.wrap{
-    width:430px;
+.wrap-signIn{
+    width:var(--main-width);
     margin:0 auto;
 }
 h1{
@@ -39,6 +40,7 @@ form div .inputBox{
     background:#fff;
     border:1px solid #dadada;
     padding:15px;
+    overflow-x: scroll;
 }
 form div input{
     border:none;
@@ -99,4 +101,34 @@ form .birth .birthform{
     font-size:1.2rem;
     padding:15px 0;
     cursor: pointer;
+}
+
+.tag{
+    margin-right:3px;
+    background:#ddd;
+    border:1px solid #999;
+    border-radius: 10px;
+    color:#888;
+    text-align:center;
+    padding:3px 5px;
+}
+.tag .close-btn{
+    padding:0;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 0.9rem;
+    margin:auto 5px;
+    border:1px solid #999;
+    width:1rem;
+    height:1rem;
+    line-height: 1rem;
+    border-radius: 50px;
+}
+input.input-favorite{
+    display: inline-block;
+    width:auto;
+}
+input.input-favorite:focus
+{
+    outline-width:0;
 }

@@ -1,21 +1,22 @@
 import { triggerEvent } from './eventTrigger.js';
-
+//TODO: magic number 제거
 //TODO: 선택자 의존성 없게 바꾸자 .${field} .inputBox ${inputType}
 const showMsg = {
-    registerEvent(field, inputType, validateObj){
+    init(field, inputType, validateObj){
         const targets = document.querySelectorAll(`.${field} .inputBox ${inputType}`);
-        targets.forEach(target => {
-            target.addEventListener("change", () => {
-                const msgField = document.querySelector(`.${field} .error`);
-                const msgObj = validateObj.validate(target.value);
-                msgField.innerHTML = msgObj.msg;
-                msgField.style.color = msgObj.status !== 'good' ? '#f00': '#37b24d'; 
-            })
+        targets.forEach(target =>this.registerEvent(target, validateObj, field))
+    },
+    registerEvent(target, validateObj, field){
+        target.addEventListener("change", () => {
+            const msgObj = validateObj.validate(target.value);
+            const msgField = document.querySelector(`.${field} .error`);
+            msgField.innerHTML = msgObj.msg;
+            msgField.style.color = msgObj.status !== 'good' ? '#f00': '#37b24d'; 
         })
     }
 }
 
-const ID = {
+const validID = {
     regExpId: /^[0-9a-z_-]{5,20}$/,
     msg:{
         taken: {status:'taken', msg:'이미 사용중인 아이디입니다.'},
@@ -34,7 +35,7 @@ const ID = {
 }
 
 //TODO: if else 안쓸수 있을 것 같은데 어렵다. 고민하자.
-const PW = {
+const validPW = {
     regExpPw:{
         capitalErr:/(?=.*[A-Z])/,
         numberErr: /(?=.*[0-9])/,
@@ -70,7 +71,7 @@ const reconfirmPW = {
     }
 }
 
-const Birth = {
+const validBirth = {
     regExpYear: /^[0-9]{4}$/,
     regExpDate: /^[0-9]{1,2}$/,
     msg: { 
@@ -100,7 +101,7 @@ const Birth = {
     }
 }
 
-const Email = {
+const validEmail = {
     regExpEmail:/^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i,
     msg:{
         wrong: { status:'wrong', msg:'이메일 주소를 다시 확인해주세요.' },
@@ -112,7 +113,7 @@ const Email = {
     }
 }
 
-const Number = {
+const validNumber = {
     regExpNumber: /^(010)\d{3,4}\d{4}$/,
     msg:{
         wrong: { status:'wrong', msg:'형식에 맞지 않는 번호입니다.' },
@@ -124,4 +125,4 @@ const Number = {
     }
 }
 
-export { showMsg, ID, PW, reconfirmPW, Birth, Email, Number };
+export { showMsg, validID, validPW, reconfirmPW, validBirth, validEmail, validNumber };

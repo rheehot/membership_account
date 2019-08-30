@@ -1,2 +1,0 @@
-const logIn = ``;
-export { logIn };
