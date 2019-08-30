@@ -49,3 +49,14 @@ table {
 a {
     text-decoration: none;
 }
+
+select {
+    -webkit-appearance: none;
+	-moz-appearance: none;        
+	appearance: none;
+	border:none;
+	background:none;
+}
+
+/* IE 에서 Select box 화살표 제거 */ 
+select::-ms-expand { display: none; }
