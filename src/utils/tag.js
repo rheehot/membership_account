@@ -1,4 +1,6 @@
+import { validFavorite, showMsg } from './validate.js';
 //TODO: 리스트 체크해봐야함 버그있음
+
 const tag = {
     tagList:[],
     init(){
@@ -36,7 +38,9 @@ const tag = {
             target.addEventListener('click',(e)=>{
                 const clickedTag = e.target.parentNode;
                 clickedTag.parentNode.removeChild(clickedTag);
-                this.tagList.splice(index,1);
+                this.tagList.splice(index,1);    
+                const valid = validFavorite.validate(this.tagList.length);
+                showMsg(validFavorite, valid);
             })
     },
 }

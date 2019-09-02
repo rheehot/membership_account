@@ -1,9 +1,7 @@
 import { triggerEvent } from './eventTrigger.js';
-//TODO: magic number 제거
-//TODO: 선택자 의존성 없게 바꾸자 .${field} .inputBox ${inputType}
 
 const validator = {
-    finalcheck:{},
+    errorMsg:{},
     init(tag){
         this.attatchEvent(validID);
         this.attatchEvent(validPW);
@@ -11,39 +9,75 @@ const validator = {
         this.attatchEvent(validBirth);
         this.attatchEvent(validEmail);
         this.attatchEvent(validNumber);
-        this.attatchEvent(validFavorite, 'keyup', tag.tagList);
+        this.attatchEvent(validFavorite, 'keyup', tag);
     },
-    attatchEvent(validObj, event, option ){
+    attatchEvent(validObj, event, tag ){
         validObj.dom.forEach( classname => {
             const target = document.querySelector(`.${classname}`);
-            this.registerEvent(target, validObj, event, option);
+            this.registerEvent(target, validObj, event, tag);
         });
     },
-    registerEvent(target, validObj, event='change', option ){
+    registerEvent(target, validObj, event='change', tag ){
         target.addEventListener(event, (e) => {
-            const arg = option !== undefined ? option.length : target.value;
+            const arg = tag !== undefined ? tag.tagList.length : target.value;
             const valid = validObj.validate(arg);
-            if(valid.status !== 'good'){
-                this.finalcheck[validObj.field] = valid.msg;
-            }else{
-                this.finalcheck[validObj.field] = null;
-            }
-            console.log(this.finalcheck)
-            this.showMsg(validObj, valid);
+            this.errorMsg[validObj.name] = valid.status !== 'good' ? valid.msg : null;
+            showMsg(validObj, valid);
         })
     },
-    showMsg(validObj, valid){
-        const msgField = document.querySelector(`.${validObj.field} .error`);
-        msgField.innerHTML = valid.msg;
-        msgField.style.color = valid.status !== 'good' ? '#f00': '#37b24d'; 
-    },
-    emptyCheck(validObj){
+    //TODO: 중복코드 줄이기
+    emptyCheck(validObj, option){
         validObj.dom.forEach( classname => {
             const target = document.querySelector(`.${classname}`);
-            this.finalcheck[validObj.field]=validObj.valid(target.value);
+            //약관
+            if(validObj.type === 'checkbox' && !target.checked){
+                this.errorMsg[validObj.name] = option || 'empty';
+            }else if(validObj.type === 'checkbox' && target.checked){
+                this.errorMsg[validObj.name] = null;
+            }
+            // //이름
+            else if(validObj.name === '이름' && target.value === ""){
+                this.errorMsg[validObj.name] = option || 'empty';
+            }else if(validObj.name === '이름' && target.value !== ""){
+                this.errorMsg[validObj.name] = null;
+            }
+            // //성별
+            else if(validObj.name === '성별' && target.value === ""){
+                this.errorMsg[validObj.name] = option || 'empty';
+            }else if(validObj.name === '성별' && target.value !== ""){
+                this.errorMsg[validObj.name] = null;
+            }
+            //관심사
+            else if(validObj.name === '관심사' && !validObj.status ){
+                this.errorMsg[validObj.name] = option || 'empty';
+            }else if(validObj.name === '관심사' && validObj.status){
+                this.errorMsg[validObj.name] = this.errorMsg[validObj.name];
+            }
+            //그외
+            else if(target.value === ""){
+                this.errorMsg[validObj.name] = option || 'empty';
+            }else{
+                this.errorMsg[validObj.name] = this.errorMsg[validObj.name];
+            }
         });
+    },
+    emptyCheckInit(){
+        this.emptyCheck(validID);
+        this.emptyCheck(validPW);
+        this.emptyCheck(validName);
+        this.emptyCheck(validBirth);
+        this.emptyCheck(validGender, '성별을 선택해 주세요');
+        this.emptyCheck(validEmail);
+        this.emptyCheck(validNumber);
+        this.emptyCheck(validFavorite, '3개 이상의 관심사를 입력해주세요'); 
+        this.emptyCheck(validAgreement, '약관에 동의해주세요');
     }
+}
 
+const showMsg = (validObj, valid) => {
+    const msgField = document.querySelector(`.${validObj.field} .error`);
+    msgField.innerHTML = valid.msg;
+    msgField.style.color = valid.status !== 'good' ? '#f00': '#37b24d'; 
 }
 
 const validID = {
@@ -58,12 +92,8 @@ const validID = {
         good:  {status:'good', msg:'사용가능한 아이디입니다.'}
     },
     validate(id){
-        if(!this.regExpId.test(id)) { 
-            return this.msg.wrong;
-        } 
-        else if(this.checkDuplication(id)){
-            return this.msg.taken;
-        } 
+        if(!this.regExpId.test(id)) return this.msg.wrong;
+        else if(this.checkDuplication(id)) return this.msg.taken;
         else return this.msg.good;
     },
     checkDuplication(id){
@@ -187,27 +217,29 @@ const validFavorite = {
     dom: ['input-favorite'],
     type:'input',
     field: 'favorite',
-    
+    name: '관심사',    
+    status :  false,
     msg:{
         wrong: { status:'wrong', msg:'3개 이상의 관심사를 입력하세요.' },
         good: {status:'good', msg:''}
     },
     validate(length){
-        if(length < 3) return this.msg.wrong; 
-        else return this.msg.good;
+        if(length < 3){
+            this.status = false;
+            return this.msg.wrong; 
+        }
+        else {
+            this.status = true;
+            return this.msg.good;
+        }
     }
 }
 
-const vilidName = {
+const validName = {
     dom: ['input-name'],
     type:'input',
     field: 'name',
-    name: '관심사',    
-    validate(name){
-        if(name !== ''){
-            return '이름을 입력해주세요'
-        }else return null;
-    }
+    name: '이름',    
 }
 
 const validGender = {
@@ -215,11 +247,6 @@ const validGender = {
     type:'input',
     field: 'gender',
     name: '성별',    
-    validate(gender){
-        if(gender !== ''){
-            return '성별을 선택해주세요'
-        }else return null;
-    }
 }
 
 const validAgreement = {
@@ -227,11 +254,6 @@ const validAgreement = {
     type:'checkbox',
     field: 'agreement',
     name: '약관',    
-    validate(checked){
-        if(checked === true){
-            return '약관을 동의해주세요'
-        }else return null;
-    }
 }
 
-export { validator };
+export { validator, showMsg, validFavorite };
