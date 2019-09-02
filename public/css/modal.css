@@ -33,7 +33,7 @@
     color:#888;
     padding:30px;
 }
-.content-reset{
+.content-reset, .content-join{
     text-align: center;
     font-weight: bold;
     position: absolute;
@@ -61,6 +61,19 @@
     color:#fff;
     border:none;
     background:#ddd;
+    padding:10px 0;
+    cursor: pointer;
+}
+.modalbox .join-btn{
+    width:30%;
+    position: absolute;
+    bottom:20px;
+    left:50%;
+    transform: translateX(-50%);
+    font-size:1rem;
+    color:#fff;
+    border:none;
+    background:var(--main-primary-color);
     padding:10px 0;
     cursor: pointer;
 }

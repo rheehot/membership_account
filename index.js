@@ -1,12 +1,14 @@
+//view components
 import { signIn } from './src/signIn/signIn.js';
 import { agree } from './src/signIn/agree.js';
 import { main } from './src/main/main.js';
 import { logIn } from './src/logIn/logIn.js';
-import * as validate from './src/utils/validate.js';
+//utils
+import {validator} from './src/utils/validate.js';
 import { tag } from './src/utils/tag.js';
 import { agreement } from './src/utils/agree.js';
 import { reset } from './src/utils/reset.js';
-
+import { join } from './src/utils/join.js';
 
 
 //TODO:
@@ -17,23 +19,14 @@ import { reset } from './src/utils/reset.js';
 //TODO: 화면갈아끼울때 이벤트도 제거해주자
 const signInPage = {
     // validation = {
-    //     { field: 'id'}
     // },
     init(){
         document.querySelector('body').innerHTML = signIn;
         tag.init();
         agreement.init();   
         reset.init();
-        
-        validate.showMsg.init('id', 'input', validate.validID );
-        validate.showMsg.init('pw', 'input', validate.validPW );
-        validate.showMsg.init('pw-reconfirm', 'input', validate.reconfirmPW );
-        validate.showMsg.init('birth', 'input', validate.validBirth);
-        validate.showMsg.init('birth', 'select', validate.validBirth);
-        validate.showMsg.init('email', 'input', validate.validEmail);
-        validate.showMsg.init('number', 'input', validate.validNumber);
-        validate.showMsg.init('favorite', 'input', validate.validTag, 'keyup',tag.tagList);
-
+        join.init(validator);
+        validator.init(tag);
     },
     // validate(){
         // TOTO: 객체 만들어서 이터레이터

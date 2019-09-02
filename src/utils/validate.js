@@ -1,23 +1,56 @@
 import { triggerEvent } from './eventTrigger.js';
 //TODO: magic number 제거
 //TODO: 선택자 의존성 없게 바꾸자 .${field} .inputBox ${inputType}
-const showMsg = {
-    init(field, inputType, validateObj, event, option ){
-        const targets = document.querySelectorAll(`.${field} .inputBox ${inputType}`);
-        targets.forEach(target =>this.registerEvent(target, validateObj, field, event, option ))
+
+const validator = {
+    finalcheck:{},
+    init(tag){
+        this.attatchEvent(validID);
+        this.attatchEvent(validPW);
+        this.attatchEvent(reconfirmPW );     
+        this.attatchEvent(validBirth);
+        this.attatchEvent(validEmail);
+        this.attatchEvent(validNumber);
+        this.attatchEvent(validFavorite, 'keyup', tag.tagList);
     },
-    registerEvent(target, validateObj, field, event='change', option ){
+    attatchEvent(validObj, event, option ){
+        validObj.dom.forEach( classname => {
+            const target = document.querySelector(`.${classname}`);
+            this.registerEvent(target, validObj, event, option);
+        });
+    },
+    registerEvent(target, validObj, event='change', option ){
         target.addEventListener(event, (e) => {
             const arg = option !== undefined ? option.length : target.value;
-            const msgObj = validateObj.validate(arg);
-            const msgField = document.querySelector(`.${field} .error`);
-            msgField.innerHTML = msgObj.msg;
-            msgField.style.color = msgObj.status !== 'good' ? '#f00': '#37b24d'; 
+            const valid = validObj.validate(arg);
+            if(valid.status !== 'good'){
+                this.finalcheck[validObj.field] = valid.msg;
+            }else{
+                this.finalcheck[validObj.field] = null;
+            }
+            console.log(this.finalcheck)
+            this.showMsg(validObj, valid);
         })
+    },
+    showMsg(validObj, valid){
+        const msgField = document.querySelector(`.${validObj.field} .error`);
+        msgField.innerHTML = valid.msg;
+        msgField.style.color = valid.status !== 'good' ? '#f00': '#37b24d'; 
+    },
+    emptyCheck(validObj){
+        validObj.dom.forEach( classname => {
+            const target = document.querySelector(`.${classname}`);
+            this.finalcheck[validObj.field]=validObj.valid(target.value);
+        });
     }
+
 }
 
 const validID = {
+    dom: ['input-id'],
+    type:'input',
+    field: 'id',
+    name: '아이디',
     regExpId: /^[0-9a-z_-]{5,20}$/,
     msg:{
         taken: {status:'taken', msg:'이미 사용중인 아이디입니다.'},
@@ -25,8 +58,12 @@ const validID = {
         good:  {status:'good', msg:'사용가능한 아이디입니다.'}
     },
     validate(id){
-        if(!this.regExpId.test(id)) return this.msg.wrong; 
-        else if(this.checkDuplication(id)) return this.msg.taken; 
+        if(!this.regExpId.test(id)) { 
+            return this.msg.wrong;
+        } 
+        else if(this.checkDuplication(id)){
+            return this.msg.taken;
+        } 
         else return this.msg.good;
     },
     checkDuplication(id){
@@ -37,6 +74,10 @@ const validID = {
 
 //TODO: if else 안쓸수 있을 것 같은데 어렵다. 고민하자.
 const validPW = {
+    dom: ['input-pw'],
+    type:'input',
+    field: 'pw',
+    name: '비밀번호',
     regExpPw:{
         capitalErr:/(?=.*[A-Z])/,
         numberErr: /(?=.*[0-9])/,
@@ -63,6 +104,10 @@ const validPW = {
 }
 
 const reconfirmPW = {
+    dom: ['input-pw-reconfirm'],
+    type:'input',
+    field: 'pw-reconfirm',
+    name: '비밀번호 재확인',    
     msg:{
         wrong:{status:'wrong', msg:'비밀번호가 일치하지 않습니다.'},
         good: {status:'good', msg:'비밀번호가 일치합니다.'}
@@ -73,6 +118,10 @@ const reconfirmPW = {
 }
 
 const validBirth = {
+    dom: ['input-year','input-month','input-date'],
+    type:'input',
+    field: 'birth',
+    name: '생년월일',    
     regExpYear: /^[0-9]{4}$/,
     regExpDate: /^[0-9]{1,2}$/,
     msg: { 
@@ -83,9 +132,9 @@ const validBirth = {
         good: {status:'good', msg:''}
     },
     validate(){
-        const year = document.querySelector('.input-year').value;
-        const month = document.querySelector('.input-month').value;
-        const date = document.querySelector('.input-date').value;
+        const year = document.querySelector(`.${this.dom[0]}`).value;
+        const month = document.querySelector(`.${this.dom[1]}`).value;
+        const date = document.querySelector(`.${this.dom[2]}`).value;
 
         const lastdate = this.getDateRange(year,month);
         const minYear = new Date().getFullYear()-99;
@@ -103,6 +152,10 @@ const validBirth = {
 }
 
 const validEmail = {
+    dom: ['input-email'],
+    type:'input',
+    field: 'email',
+    name: '이메일',
     regExpEmail:/^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i,
     msg:{
         wrong: { status:'wrong', msg:'이메일 주소를 다시 확인해주세요.' },
@@ -115,6 +168,10 @@ const validEmail = {
 }
 
 const validNumber = {
+    dom: ['input-number'],
+    type:'input',
+    field: 'number',
+    name: '핸드폰번호',    
     regExpNumber: /^(010)\d{3,4}\d{4}$/,
     msg:{
         wrong: { status:'wrong', msg:'형식에 맞지 않는 번호입니다.' },
@@ -126,14 +183,55 @@ const validNumber = {
     }
 }
 
-const validTag = {
+const validFavorite = {
+    dom: ['input-favorite'],
+    type:'input',
+    field: 'favorite',
+    
     msg:{
         wrong: { status:'wrong', msg:'3개 이상의 관심사를 입력하세요.' },
         good: {status:'good', msg:''}
     },
     validate(length){
-        if(length >= 3) return this.msg.good; 
-        else return this.msg.wrong;
+        if(length < 3) return this.msg.wrong; 
+        else return this.msg.good;
     }
 }
-export { showMsg, validID, validPW, reconfirmPW, validBirth, validEmail, validNumber, validTag };
+
+const vilidName = {
+    dom: ['input-name'],
+    type:'input',
+    field: 'name',
+    name: '관심사',    
+    validate(name){
+        if(name !== ''){
+            return '이름을 입력해주세요'
+        }else return null;
+    }
+}
+
+const validGender = {
+    dom: ['input-gender'],
+    type:'input',
+    field: 'gender',
+    name: '성별',    
+    validate(gender){
+        if(gender !== ''){
+            return '성별을 선택해주세요'
+        }else return null;
+    }
+}
+
+const validAgreement = {
+    dom: ['input-agree'],
+    type:'checkbox',
+    field: 'agreement',
+    name: '약관',    
+    validate(checked){
+        if(checked === true){
+            return '약관을 동의해주세요'
+        }else return null;
+    }
+}
+
+export { validator };

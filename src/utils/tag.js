@@ -1,3 +1,4 @@
+//TODO: 리스트 체크해봐야함 버그있음
 const tag = {
     tagList:[],
     init(){
