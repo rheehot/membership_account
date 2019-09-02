@@ -102,7 +102,7 @@ export const signIn =/*html*/ `
             <div class="agreement">
                 <div class="agreecheck">
                     <div>약관에 동의합니다.</div>
-                    <input type="checkbox" name="agree" class="input-agree">
+                    <input type="checkbox" disabled name="agree" class="input-agree">
                 </div>
             </div>
             <div class="submit-btn">

@@ -4,6 +4,7 @@ import { main } from './src/main/main.js';
 import { logIn } from './src/logIn/logIn.js';
 import * as validate from './src/utils/validate.js';
 import { tag } from './src/utils/tag.js';
+import { agreement } from './src/utils/agree.js'
 
 
 //TODO:
@@ -17,8 +18,8 @@ const signInPage = {
 
         document.querySelector('body').innerHTML = signIn;
 
-        tag.init('.input-favorite');
-        // agreement.init();
+        tag.init();
+        agreement.init();
 
         validate.showMsg.init('id', 'input', validate.validID );
         validate.showMsg.init('pw', 'input', validate.validPW );
@@ -28,34 +29,7 @@ const signInPage = {
         validate.showMsg.init('email', 'input', validate.validEmail);
         validate.showMsg.init('number', 'input', validate.validNumber);
         validate.showMsg.init('favorite', 'input', validate.validTag, 'keyup',tag.tagList);
-        this.popUpAgree();
-    },
-    //TODO: agree핍업관련 유틸로 옮기기
-    popUpAgree(){
-        const target = document.querySelector('.agreecheck');
-        target.addEventListener('click',(e)=>{
-            document.querySelector('body').insertAdjacentHTML('afterbegin',agree);
-            this.activeBtn();
-            this.closeAgree();
-        })
-    },
-    closeAgree(){
-        const target = document.querySelector('.agreebox .close-btn');
-        target.addEventListener('click',(e)=>{
-            //TODO: element remove하고 싶다.
-            // const agreeBox = document.querySelector('.wrap-agree');
-            // agreeBox.style.display="none";
-        })
-    },
-    activeBtn(){
-        const target = document.querySelector('.agreebox .content');
-        target.addEventListener('scroll', (e)=>{
-            console.log(e.target.scrollTop)
-            if(e.target.scrollTop===600){
-                document.querySelector('.agreebox .agree-btn').classList.add("active");
-            }
-        })
 
-    }
+    },
 }
 signInPage.init();

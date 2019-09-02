@@ -1,7 +1,7 @@
 const tag = {
     tagList:[],
-    init(input){
-        const target = document.querySelector(input);
+    init(){
+        const target = document.querySelector('.input-favorite');
         target.addEventListener("keyup", (e)=>this.createTag(e, target))
         target.addEventListener("keyup", (e)=>this.updateTag(e, target))
     },
