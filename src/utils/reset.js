@@ -1,4 +1,4 @@
-import { resetHTML } from '../signIn/reset.js';
+import { resetHTML } from '../components/reset.js';
 
 const reset = {
     init(){

@@ -1,4 +1,4 @@
-import { agree } from '../signIn/agree.js';
+import { agree } from '../components/agree.js';
 
 //TODO: 다시누르면 체크박스 초기화
 const agreement = {

@@ -1,4 +1,4 @@
-import { JOIN } from '../signIn/join.js';
+import { JOIN } from '../components/join.js';
 
 const join = {
     init(validator){
