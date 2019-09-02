@@ -1,1 +1,1 @@
-export const logIn = ``;
+export const logIn = /*html*/``;

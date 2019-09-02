@@ -2,19 +2,22 @@ const tag = {
     tagList:[],
     init(input){
         const target = document.querySelector(input);
-        target.addEventListener("input", (e)=>this.createTag(e, target))
+        target.addEventListener("keyup", (e)=>this.createTag(e, target))
         target.addEventListener("keyup", (e)=>this.updateTag(e, target))
     },
-    createTagHTML(value){
-        return `<span class="tag">${value}<div class="close-btn">X</div></span>`
+    createTagHTML(value, index){
+        return `<span class="tag tag${index}">${value}<div class="close-btn">X</div></span>`
     },
     createTag(event, target){
-        if(event.data === ',' ){
+        const keycode  = event.which?event.which:event.keyCode;
+        if(keycode === 188 ){
             const tagArr = target.value.split(',');  
             target.value = '';
             if(tagArr[0] !== ""){
+                const index  = this.tagList.length
                 this.tagList.push(tagArr[0]);
-                target.insertAdjacentHTML("beforebegin", this.createTagHTML(tagArr[0]));
+                target.insertAdjacentHTML("beforebegin", this.createTagHTML(tagArr[0],index));
+                this.removeTag(index);
             }else return;
         }else return;
     },
@@ -27,9 +30,13 @@ const tag = {
             }else return;
         }else return;
     },
-    //TODO: removetag
-    removeTag(){
-        document.querySelector('.tag .close-btn');
+    removeTag(index){
+            const target = document.querySelector(`.tag.tag${index}`);
+            target.addEventListener('click',(e)=>{
+                const clickedTag = e.target.parentNode;
+                clickedTag.parentNode.removeChild(clickedTag);
+                this.tagList.splice(index,1);
+            })
     },
 }
 export { tag };

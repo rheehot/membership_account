@@ -1,4 +1,4 @@
-export const signIn = `
+export const signIn =/*html*/ `
 <div class="wrap-signIn">
         <h1>회원가입</h1>
         <form action="">

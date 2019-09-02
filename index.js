@@ -1,9 +1,9 @@
-import { signIn } from './signIn/signIn.js';
-import { agree } from './signIn/agree.js';
-import { main } from './main/main.js';
-import { logIn } from './logIn/logIn.js';
-import * as validate from './utils/validate.js';
-import { tag } from './utils/tag.js';
+import { signIn } from './src/signIn/signIn.js';
+import { agree } from './src/signIn/agree.js';
+import { main } from './src/main/main.js';
+import { logIn } from './src/logIn/logIn.js';
+import * as validate from './src/utils/validate.js';
+import { tag } from './src/utils/tag.js';
 
 
 //TODO:
@@ -45,7 +45,8 @@ const signInPage = {
     activeBtn(){
         const target = document.querySelector('.agreebox .content');
         target.addEventListener('scroll', (e)=>{
-            if(e.target.scrollTop===280){
+            console.log(e.target.scrollTop)
+            if(e.target.scrollTop===600){
                 document.querySelector('.agreebox .agree-btn').classList.add("active");
             }
         })

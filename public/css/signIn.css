@@ -111,6 +111,8 @@ form .birth .birthform{
     color:#888;
     text-align:center;
     padding:3px 5px;
+    display: inline-block;
+    margin-bottom:5px;
 }
 .tag .close-btn{
     padding:0;
