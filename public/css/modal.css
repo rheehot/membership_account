@@ -1,5 +1,5 @@
 @import url('./signIn.css');
-.wrap-agree{
+.wrap-modal{
     position: fixed;
     top:0;
     bottom:0;
@@ -7,7 +7,7 @@
     width:100vw;
     height:100vh;
 }
-.agreebox{
+.modalbox{
     position: absolute;
     top:50%;
     left:50%;
@@ -18,7 +18,7 @@
     border:1px solid #999;
     padding:20px;
 }
-.agreebox h5{
+.modalbox h5{
     font-size: 1rem;
     margin:0;
     padding:0;
@@ -33,7 +33,15 @@
     color:#888;
     padding:30px;
 }
-.agreebox .close-btn{
+.content-reset{
+    text-align: center;
+    font-weight: bold;
+    position: absolute;
+    top:40%;
+    left:50%;
+    transform: translate(-50%,-50%);
+}
+.modalbox .close-btn{
     border:none;
     background:transparent;
     font-weight: bold;
@@ -43,7 +51,7 @@
     font-size: 1.5rem;
     cursor: pointer;
 }
-.agreebox .agree-btn{
+.modalbox .agree-btn{
     width:30%;
     position: absolute;
     bottom:20px;
@@ -58,4 +66,23 @@
 }
 .agree-btn.active{
     background:var(--main-primary-color);
+}
+.btn-reset{
+    width:80%;
+    position: absolute;
+    bottom:20px;
+    left:50%;
+    transform: translateX(-50%);
+    display:flex;
+    justify-content:space-between;
+}
+.btn-reset button{
+    flex:1;
+    margin:10px;
+    font-size:1rem;
+    color:#fff;
+    border:none;
+    background:var(--main-primary-color);
+    padding:10px 0;
+    cursor: pointer;
 }

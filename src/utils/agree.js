@@ -13,20 +13,20 @@ const agreement = {
         })
     },
     removeAgree(){
-        const agreeBox = document.querySelector('.wrap-agree');
+        const agreeBox = document.querySelector('.wrap-modal');
         agreeBox.parentElement.removeChild(agreeBox);
     },
     closeAgree(){
-        const target = document.querySelector('.agreebox .close-btn');
+        const target = document.querySelector('.modalbox .close-btn');
         target.addEventListener('click',()=>{
             this.removeAgree();
         })
     },
     activeBtn(){
-        const target = document.querySelector('.agreebox .content');
+        const target = document.querySelector('.modalbox .content');
         target.addEventListener('scroll', (e)=>{
             if(e.target.scrollTop===600){
-                document.querySelector('.agreebox .agree-btn').classList.add("active");
+                document.querySelector('.modalbox .agree-btn').classList.add("active");
                 this.checkAgree();
             }
         })

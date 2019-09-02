@@ -1,6 +1,6 @@
 export const agree = /*html*/`
-<div class="wrap-agree">
-        <div class="agreebox">
+<div class="wrap-modal">
+        <div class="modalbox">
             <button class="close-btn">x</button>
             <h5>개인정보 수집과 이용에 관한 안내</h5>
             <div class="content">

@@ -1,7 +1,7 @@
 export const signIn =/*html*/ `
 <div class="wrap-signIn">
         <h1>회원가입</h1>
-        <form action="">
+        <form action="" id="signIn-form">
             <fieldset>
                 <div class="id">
                     <h5>아이디</h5>
@@ -106,8 +106,8 @@ export const signIn =/*html*/ `
                 </div>
             </div>
             <div class="submit-btn">
-                <button class="reset">초기화</button>
-                <button class="join">가입하기</button>
+                <button type= "button" class="reset">초기화</button>
+                <button type= "button" class="join">가입하기</button>
             </div>
         </form>
     </div>
