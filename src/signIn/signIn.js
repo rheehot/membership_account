@@ -96,6 +96,7 @@ export const signIn =/*html*/ `
                     <div class="inputBox">
                         <input type="text" class="input-favorite">
                     </div>
+                    <div class="error"></div>
                 </div>
             </fieldset>
             <div class="agreement">

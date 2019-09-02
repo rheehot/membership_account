@@ -14,7 +14,12 @@ import { tag } from './src/utils/tag.js';
 //TODO: 화면갈아끼울때 이벤트도 제거해주자
 const signInPage = {
     init(){
+
         document.querySelector('body').innerHTML = signIn;
+
+        tag.init('.input-favorite');
+        // agreement.init();
+
         validate.showMsg.init('id', 'input', validate.validID );
         validate.showMsg.init('pw', 'input', validate.validPW );
         validate.showMsg.init('pw-reconfirm', 'input', validate.reconfirmPW );
@@ -22,7 +27,7 @@ const signInPage = {
         validate.showMsg.init('birth', 'select', validate.validBirth);
         validate.showMsg.init('email', 'input', validate.validEmail);
         validate.showMsg.init('number', 'input', validate.validNumber);
-        tag.init('.input-favorite');
+        validate.showMsg.init('favorite', 'input', validate.validTag, 'keyup',tag.tagList);
         this.popUpAgree();
     },
     //TODO: agree핍업관련 유틸로 옮기기

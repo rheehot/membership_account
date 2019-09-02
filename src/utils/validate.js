@@ -1,14 +1,16 @@
 import { triggerEvent } from './eventTrigger.js';
+import { tag } from './tag.js';
 //TODO: magic number 제거
 //TODO: 선택자 의존성 없게 바꾸자 .${field} .inputBox ${inputType}
 const showMsg = {
-    init(field, inputType, validateObj){
+    init(field, inputType, validateObj, event, option ){
         const targets = document.querySelectorAll(`.${field} .inputBox ${inputType}`);
-        targets.forEach(target =>this.registerEvent(target, validateObj, field))
+        targets.forEach(target =>this.registerEvent(target, validateObj, field, event, option ))
     },
-    registerEvent(target, validateObj, field){
-        target.addEventListener("change", () => {
-            const msgObj = validateObj.validate(target.value);
+    registerEvent(target, validateObj, field, event='change', option ){
+        target.addEventListener(event, (e) => {
+            const arg = option !== undefined ? option.length : target.value;
+            const msgObj = validateObj.validate(arg);
             const msgField = document.querySelector(`.${field} .error`);
             msgField.innerHTML = msgObj.msg;
             msgField.style.color = msgObj.status !== 'good' ? '#f00': '#37b24d'; 
@@ -125,4 +127,14 @@ const validNumber = {
     }
 }
 
-export { showMsg, validID, validPW, reconfirmPW, validBirth, validEmail, validNumber };
+const validTag = {
+    msg:{
+        wrong: { status:'wrong', msg:'3개 이상의 관심사를 입력하세요.' },
+        good: {status:'good', msg:''}
+    },
+    validate(length){
+        if(length >= 3) return this.msg.good; 
+        else return this.msg.wrong;
+    }
+}
+export { showMsg, validID, validPW, reconfirmPW, validBirth, validEmail, validNumber, validTag };
