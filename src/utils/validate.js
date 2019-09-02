@@ -1,6 +1,7 @@
 import { triggerEvent } from './eventTrigger.js';
 
 const validator = {
+    //{status:true,msg:--}
     errorMsg:{},
     init(tag){
         this.attatchEvent(validID);
@@ -22,6 +23,7 @@ const validator = {
             const arg = tag !== undefined ? tag.tagList.length : target.value;
             const valid = validObj.validate(arg);
             this.errorMsg[validObj.name] = valid.status !== 'good' ? valid.msg : null;
+            // this.errorMsg[validObj.name] = valid;
             showMsg(validObj, valid);
         })
     },

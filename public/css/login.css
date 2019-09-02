@@ -1,0 +1,23 @@
+.wrap-login{
+    width:100vw;
+    height:100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.loginbox{
+    width:430px;
+}
+.btn-success{
+    width:100%;
+}
+#logIn-form div{
+    margin:0;
+    padding:0;
+}
+#logIn-form .id{
+    margin-bottom:10px;
+}
+#logIn-form .pw{
+    margin-bottom:50px;
+}

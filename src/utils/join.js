@@ -8,7 +8,7 @@ const join = {
             const checkMsg = validator.errorMsg;
             const MSG = [];
             for( let el in checkMsg){
-                if(checkMsg[el]=== 'empty') MSG.push(`${el}: 값을 입력해주세요`)
+                if(checkMsg[el]=== 'empty') MSG.push(`${el} 값을 입력해주세요`)
                 else if(checkMsg[el]!==null) MSG.push(`${el}: ${checkMsg[el]}`);
             }   
             (MSG.length > 0) ? this.popUpJoin(MSG): this.submit();
@@ -34,9 +34,8 @@ const join = {
             this.removeJoin();
         })
     },
-    submit(){
-        document.getElementById('signIn-form').submit();
-        
+    async submit(){
+        await document.getElementById('signIn-form').submit();
     }
 }
 export { join };
