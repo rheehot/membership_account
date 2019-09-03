@@ -1,4 +1,4 @@
-import { agree } from '../components/agree.js';
+import Agree from '../components/agree.js';
 
 const agreement = {
     init(){
@@ -7,7 +7,7 @@ const agreement = {
     popUpAgree(){
         const target = document.querySelector('.agreecheck');
         target.addEventListener('click',()=>{
-            document.querySelector('body').insertAdjacentHTML('afterbegin',agree);
+            document.querySelector('body').insertAdjacentHTML('afterbegin',Agree);
             this.resetAgree();
             this.activeBtn();
             this.closeAgree();

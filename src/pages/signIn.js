@@ -4,8 +4,6 @@ import { agreement } from '../utils/agree.js';
 import { reset } from '../utils/reset.js';
 import { join } from '../utils/join.js';
 
-
-//TODO 회원가입 데이터 넘기고 목업서버, 로그인데이터넘기고, 메인으로
 const signIn = {
     render : async () => {
         let view =  /*html*/`

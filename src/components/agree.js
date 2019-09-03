@@ -1,4 +1,4 @@
-export const agree = /*html*/`
+const Agree = /*html*/`
 <div class="wrap-modal">
         <div class="modalbox">
             <button class="close-btn">x</button>
@@ -41,3 +41,4 @@ export const agree = /*html*/`
             <button class="agree-btn">동의</button>
         </div>
     </div>`
+    export default Agree;

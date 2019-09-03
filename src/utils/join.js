@@ -1,4 +1,4 @@
-import { JOIN } from '../components/join.js';
+import Join from '../components/join.js';
 import users from '../assets/userData.js';
  
 const join = {
@@ -16,7 +16,7 @@ const join = {
         })
     },
     popUpJoin(msg){
-        document.querySelector('body').insertAdjacentHTML('afterbegin',JOIN);
+        document.querySelector('body').insertAdjacentHTML('afterbegin',Join);
         document.querySelector('.content-join').innerHTML = this.msgReducer(msg);
         this.closeJoin();
     },
@@ -39,8 +39,8 @@ const join = {
         //TODO: 전체 데이터 비동기 포스트
         const id= document.querySelector('.input-id').value;
         const pw= document.querySelector('.input-pw').value;
-        postData({id:id, pw:pw})
-        window.location.href = `#/home/${id}`
+        postData({id:id, pw:pw});
+        window.location.href = `#/home/${id}`;
     }
 }
 

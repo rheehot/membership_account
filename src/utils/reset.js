@@ -1,4 +1,4 @@
-import { resetHTML } from '../components/reset.js';
+import Reset from '../components/reset.js';
 
 const reset = {
     init(){
@@ -7,7 +7,7 @@ const reset = {
     popUpReset(){
         const target = document.querySelector('.reset');
         target.addEventListener('click',(e)=>{
-            document.querySelector('body').insertAdjacentHTML('afterbegin', resetHTML );
+            document.querySelector('body').insertAdjacentHTML('afterbegin', Reset );
             this.undoReset();
             this.doReset();
         })

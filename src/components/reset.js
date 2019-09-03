@@ -1,4 +1,4 @@
-export const resetHTML = /*html*/`
+const Reset = /*html*/`
 <div class="wrap-modal">
         <div class="modalbox">
             <div class="content-reset">모든 내용을 새로 작성하시겠습니까?</div>
@@ -8,3 +8,4 @@ export const resetHTML = /*html*/`
             </div>
         </div>
 </div>`
+export default Reset;
