@@ -1,7 +1,7 @@
 import { triggerEvent } from './eventTrigger.js';
+import users from '../assets/userData.js'
 
 const validator = {
-    //{status:true,msg:--}
     errorMsg:{},
     init(tag){
         this.attatchEvent(validID);
@@ -99,7 +99,9 @@ const validID = {
         else return this.msg.good;
     },
     checkDuplication(id){
-        const data = ['boostcamp','boost'];
+        const data = users.map(d=>{
+            return d.id;
+        });
         return data.includes(id);
     }
 }

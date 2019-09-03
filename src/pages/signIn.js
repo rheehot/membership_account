@@ -1,10 +1,12 @@
-import {validator} from '../utils/validate.js';
+import { validator } from '../utils/validate.js';
 import { tag } from '../utils/tag.js'
 import { agreement } from '../utils/agree.js';
 import { reset } from '../utils/reset.js';
 import { join } from '../utils/join.js';
 
-let signIn = {
+
+//TODO 회원가입 데이터 넘기고 목업서버, 로그인데이터넘기고, 메인으로
+const signIn = {
     render : async () => {
         let view =  /*html*/`
         <div class="wrap-signIn">
@@ -122,14 +124,12 @@ let signIn = {
         `
         return view
     },
-    init: async () => {
+    after_render: async () => {
         tag.init();
         agreement.init();   
         reset.init();
         join.init(validator);
         validator.init(tag);
-    }, 
-    after_render: async () => {
     }
 }
 export default signIn;

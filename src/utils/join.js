@@ -1,4 +1,6 @@
 import { JOIN } from '../components/join.js';
+import users from '../assets/userData.js';
+ 
 
 const join = {
     init(validator){
@@ -11,7 +13,7 @@ const join = {
                 if(checkMsg[el]=== 'empty') MSG.push(`${el} 값을 입력해주세요`)
                 else if(checkMsg[el]!==null) MSG.push(`${el}: ${checkMsg[el]}`);
             }   
-            (MSG.length > 0) ? this.popUpJoin(MSG): this.submit();
+            (MSG.length > 0) ? this.popUpJoin(MSG): this.postForm();
         })
     },
     popUpJoin(msg){
@@ -34,8 +36,28 @@ const join = {
             this.removeJoin();
         })
     },
-    async submit(){
-        await document.getElementById('signIn-form').submit();
+    async postForm(){
+        //전체 데이터 포스트
+        const id= document.querySelector('.input-id').value;
+        const pw= document.querySelector('.input-pw').value;
+        postData({id:id, pw:pw})
+        window.location.href = `#/home/${id}`
     }
 }
+
+const postData = async (user) => {
+    const options = {
+       method: 'POST',
+       headers: {
+           'Content-Type': 'application/json'
+       }
+   };
+   try {
+        users.push(user);
+        console.log(users);
+   } catch (err) {
+       console.log('Error getting documents', err)
+   }
+}
+
 export { join };

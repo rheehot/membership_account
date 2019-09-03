@@ -1,5 +1,4 @@
 let error404 = {
-
     render : async () => {
         let view =  /*html*/`
             <section class="section">
@@ -7,8 +6,10 @@ let error404 = {
             </section>
         `
         return view
-    }
-    , after_render: async () => {
+    },
+    init: async() => {
+    },
+    after_render: async () => {
     }
 }
 export default error404;

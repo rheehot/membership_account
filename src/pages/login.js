@@ -1,4 +1,31 @@
-let logIn = {
+import users from '../assets/userData.js';
+
+const getData = async (user) => {
+    const options = {
+       method: 'GET',
+       headers: {
+           'Content-Type': 'application/json'
+       }
+   };
+   try {
+        //const response = await fetch(`https:server` + id, options)
+        // const json = await response.json();
+        // return json
+        let pass = false;
+        const response = users;
+        response.forEach(data=>{
+            if(data.id === user.id && data.pw === user.pw){ 
+                pass = true
+            };
+        });
+        return pass;
+
+   } catch (err) {
+       console.log('fail to get data', err)
+   }
+}
+
+const logIn = {
     render : async () => {
         let view =  /*html*/`
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -12,7 +39,7 @@ let logIn = {
                     <input type="password" placeholder='비밀번호' class="input-pw form-control">
                 </div>
                 <div class="error"></div>
-                <button type="submit" class="btn btn-success login-btn">로그인</button>
+                <button type="button" class="btn btn-success login-btn">로그인</button>
             </form>
         </div>
         </div>
@@ -21,8 +48,21 @@ let logIn = {
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>        
         `
         return view
-    }
-    , after_render: async () => {
+    },
+    after_render: async () => {
+        const target = document.querySelector('.login-btn');
+        target.addEventListener ("click",  async() => {
+            const id = document.querySelector('.input-id').value;
+            const pw = document.querySelector('.input-pw').value;
+            const msg = document.querySelector('.error');
+            const response = await getData({id:id,pw:pw});
+
+            if(response){
+                window.location.href = `#/home/${id}`
+            }else{
+                msg.innerHTML = '일치하는 아이디 패스워드가 없습니다.'
+            } 
+        })
     }
 }
 export default logIn;

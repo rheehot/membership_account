@@ -8,8 +8,11 @@
 .loginbox{
     width:430px;
 }
-.btn-success{
+.btn-success.login-btn{
+    margin-top:50px;
+    padding: 10px 0;
     width:100%;
+    font-size: 1.2rem;
 }
 #logIn-form div{
     margin:0;
@@ -19,5 +22,8 @@
     margin-bottom:10px;
 }
 #logIn-form .pw{
-    margin-bottom:50px;
+    margin-bottom:10px;
+}
+.error{
+    color:#f00;
 }

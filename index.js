@@ -3,7 +3,6 @@ import signIn from './src/pages/signIn.js';
 import logIn from './src/pages/login.js';
 import main from './src/pages/main.js';
 import error404 from './src/pages/err404.js';
-
 //utils
 import Utils from './src/utils/parseURL.js';
 
@@ -11,9 +10,11 @@ import Utils from './src/utils/parseURL.js';
 
 const routes = {
     '/': main,
+    '/home':main,
     '/signin': signIn,
     '/login': logIn
 };
+
 
 const router = async () => {
     const header = null || document.getElementById('header_container');
@@ -30,7 +31,6 @@ const router = async () => {
 
     let page = routes[parsedURL] ? routes[parsedURL] : error404
     content.innerHTML = await page.render();
-    await page.init();
     await page.after_render();
 }
 

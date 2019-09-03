@@ -8,5 +8,5 @@
     font-family:Roboto;
 }
 body{
-    background: var(--main-bg-color);
+    background: var(--main-bg-color) !important;
 }
