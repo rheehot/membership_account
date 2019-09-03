@@ -1,7 +1,15 @@
-export const signIn = `
-<div class="wrap-signIn">
+import { validator } from '../utils/validate.js';
+import { tag } from '../utils/tag.js'
+import { agreement } from '../utils/agree.js';
+import { reset } from '../utils/reset.js';
+import { join } from '../utils/join.js';
+
+const signIn = {
+    render : async () => {
+        let view =  /*html*/`
+        <div class="wrap-signIn">
         <h1>회원가입</h1>
-        <form action="">
+        <form action="" id="signIn-form">
             <fieldset>
                 <div class="id">
                     <h5>아이디</h5>
@@ -96,18 +104,30 @@ export const signIn = `
                     <div class="inputBox">
                         <input type="text" class="input-favorite">
                     </div>
+                    <div class="error"></div>
                 </div>
             </fieldset>
             <div class="agreement">
                 <div class="agreecheck">
                     <div>약관에 동의합니다.</div>
-                    <input type="checkbox" name="agree" class="input-agree">
+                    <input type="checkbox" disabled name="agree" class="input-agree">
                 </div>
             </div>
             <div class="submit-btn">
-                <button class="reset">초기화</button>
-                <button class="join">가입하기</button>
+                <button type= "button" class="reset">초기화</button>
+                <button type= "button" class="join">가입하기</button>
             </div>
         </form>
     </div>
-    `
+        `
+        return view
+    },
+    after_render: async () => {
+        tag.init();
+        agreement.init();   
+        reset.init();
+        join.init(validator);
+        validator.init(tag);
+    }
+}
+export default signIn;

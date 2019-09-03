@@ -1,15 +1,4 @@
-:root {
-    --main-bg-color: #f5f6f7; 
-    --main-primary-color:#37b24d;
-    --main-width: 430px;
-  }
-*{
-    box-sizing: border-box;
-    font-family:sans-serif;
-}
-body{
-    background: var(--main-bg-color);
-}
+@import url('./common.css');
 .wrap-signIn{
     width:var(--main-width);
     margin:0 auto;
@@ -111,6 +100,8 @@ form .birth .birthform{
     color:#888;
     text-align:center;
     padding:3px 5px;
+    display: inline-block;
+    margin-bottom:5px;
 }
 .tag .close-btn{
     padding:0;

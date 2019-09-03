@@ -1,22 +1,92 @@
 import { triggerEvent } from './eventTrigger.js';
-//TODO: magic number 제거
-//TODO: 선택자 의존성 없게 바꾸자 .${field} .inputBox ${inputType}
-const showMsg = {
-    init(field, inputType, validateObj){
-        const targets = document.querySelectorAll(`.${field} .inputBox ${inputType}`);
-        targets.forEach(target =>this.registerEvent(target, validateObj, field))
+import users from '../assets/userData.js'
+
+const validator = {
+    errorMsg:{},
+    init(tag){
+        this.attatchEvent(validID);
+        this.attatchEvent(validPW);
+        this.attatchEvent(reconfirmPW );     
+        this.attatchEvent(validBirth);
+        this.attatchEvent(validEmail);
+        this.attatchEvent(validNumber);
+        this.attatchEvent(validFavorite, 'keyup', tag);
     },
-    registerEvent(target, validateObj, field){
-        target.addEventListener("change", () => {
-            const msgObj = validateObj.validate(target.value);
-            const msgField = document.querySelector(`.${field} .error`);
-            msgField.innerHTML = msgObj.msg;
-            msgField.style.color = msgObj.status !== 'good' ? '#f00': '#37b24d'; 
+    attatchEvent(validObj, event, tag ){
+        validObj.dom.forEach( classname => {
+            const target = document.querySelector(`.${classname}`);
+            this.registerEvent(target, validObj, event, tag);
+        });
+    },
+    registerEvent(target, validObj, event='change', tag ){
+        target.addEventListener(event, (e) => {
+            const arg = tag !== undefined ? tag.tagList.length : target.value;
+            const valid = validObj.validate(arg);
+            this.errorMsg[validObj.name] = valid.status !== 'good' ? valid.msg : null;
+            // this.errorMsg[validObj.name] = valid;
+            showMsg(validObj, valid);
         })
+    },
+    //TODO: 중복코드 줄이기
+    emptyCheck(validObj, option){
+        validObj.dom.forEach( classname => {
+            const target = document.querySelector(`.${classname}`);
+            //약관
+            if(validObj.type === 'checkbox' && !target.checked){
+                this.errorMsg[validObj.name] = option || 'empty';
+            }else if(validObj.type === 'checkbox' && target.checked){
+                this.errorMsg[validObj.name] = null;
+            }
+            // //이름
+            else if(validObj.name === '이름' && target.value === ""){
+                this.errorMsg[validObj.name] = option || 'empty';
+            }else if(validObj.name === '이름' && target.value !== ""){
+                this.errorMsg[validObj.name] = null;
+            }
+            // //성별
+            else if(validObj.name === '성별' && target.value === ""){
+                this.errorMsg[validObj.name] = option || 'empty';
+            }else if(validObj.name === '성별' && target.value !== ""){
+                this.errorMsg[validObj.name] = null;
+            }
+            //관심사
+            else if(validObj.name === '관심사' && !validObj.status ){
+                this.errorMsg[validObj.name] = option || 'empty';
+            }else if(validObj.name === '관심사' && validObj.status){
+                this.errorMsg[validObj.name] = this.errorMsg[validObj.name];
+            }
+            //그외
+            else if(target.value === ""){
+                this.errorMsg[validObj.name] = option || 'empty';
+            }else{
+                this.errorMsg[validObj.name] = this.errorMsg[validObj.name];
+            }
+        });
+    },
+    emptyCheckInit(){
+        this.emptyCheck(validID);
+        this.emptyCheck(validPW);
+        this.emptyCheck(validName);
+        this.emptyCheck(validBirth);
+        this.emptyCheck(validGender, '성별을 선택해 주세요');
+        this.emptyCheck(validEmail);
+        this.emptyCheck(validNumber);
+        this.emptyCheck(validFavorite, '3개 이상의 관심사를 입력해주세요'); 
+        this.emptyCheck(validAgreement, '약관에 동의해주세요');
     }
 }
 
+const showMsg = (validObj, valid) => {
+    const msgField = document.querySelector(`.${validObj.field} .error`);
+    msgField.innerHTML = valid.msg;
+    msgField.style.color = valid.status !== 'good' ? '#f00': '#37b24d'; 
+}
+
 const validID = {
+    dom: ['input-id'],
+    type:'input',
+    field: 'id',
+    name: '아이디',
     regExpId: /^[0-9a-z_-]{5,20}$/,
     msg:{
         taken: {status:'taken', msg:'이미 사용중인 아이디입니다.'},
@@ -24,18 +94,24 @@ const validID = {
         good:  {status:'good', msg:'사용가능한 아이디입니다.'}
     },
     validate(id){
-        if(!this.regExpId.test(id)) return this.msg.wrong; 
-        else if(this.checkDuplication(id)) return this.msg.taken; 
+        if(!this.regExpId.test(id)) return this.msg.wrong;
+        else if(this.checkDuplication(id)) return this.msg.taken;
         else return this.msg.good;
     },
     checkDuplication(id){
-        const data = ['boostcamp','boost'];
+        const data = users.map(d=>{
+            return d.id;
+        });
         return data.includes(id);
     }
 }
 
 //TODO: if else 안쓸수 있을 것 같은데 어렵다. 고민하자.
 const validPW = {
+    dom: ['input-pw'],
+    type:'input',
+    field: 'pw',
+    name: '비밀번호',
     regExpPw:{
         capitalErr:/(?=.*[A-Z])/,
         numberErr: /(?=.*[0-9])/,
@@ -62,6 +138,10 @@ const validPW = {
 }
 
 const reconfirmPW = {
+    dom: ['input-pw-reconfirm'],
+    type:'input',
+    field: 'pw-reconfirm',
+    name: '비밀번호 재확인',    
     msg:{
         wrong:{status:'wrong', msg:'비밀번호가 일치하지 않습니다.'},
         good: {status:'good', msg:'비밀번호가 일치합니다.'}
@@ -72,6 +152,10 @@ const reconfirmPW = {
 }
 
 const validBirth = {
+    dom: ['input-year','input-month','input-date'],
+    type:'input',
+    field: 'birth',
+    name: '생년월일',    
     regExpYear: /^[0-9]{4}$/,
     regExpDate: /^[0-9]{1,2}$/,
     msg: { 
@@ -82,9 +166,9 @@ const validBirth = {
         good: {status:'good', msg:''}
     },
     validate(){
-        const year = document.querySelector('.input-year').value;
-        const month = document.querySelector('.input-month').value;
-        const date = document.querySelector('.input-date').value;
+        const year = document.querySelector(`.${this.dom[0]}`).value;
+        const month = document.querySelector(`.${this.dom[1]}`).value;
+        const date = document.querySelector(`.${this.dom[2]}`).value;
 
         const lastdate = this.getDateRange(year,month);
         const minYear = new Date().getFullYear()-99;
@@ -102,6 +186,10 @@ const validBirth = {
 }
 
 const validEmail = {
+    dom: ['input-email'],
+    type:'input',
+    field: 'email',
+    name: '이메일',
     regExpEmail:/^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i,
     msg:{
         wrong: { status:'wrong', msg:'이메일 주소를 다시 확인해주세요.' },
@@ -114,6 +202,10 @@ const validEmail = {
 }
 
 const validNumber = {
+    dom: ['input-number'],
+    type:'input',
+    field: 'number',
+    name: '핸드폰번호',    
     regExpNumber: /^(010)\d{3,4}\d{4}$/,
     msg:{
         wrong: { status:'wrong', msg:'형식에 맞지 않는 번호입니다.' },
@@ -125,4 +217,47 @@ const validNumber = {
     }
 }
 
-export { showMsg, validID, validPW, reconfirmPW, validBirth, validEmail, validNumber };
+const validFavorite = {
+    dom: ['input-favorite'],
+    type:'input',
+    field: 'favorite',
+    name: '관심사',    
+    status :  false,
+    msg:{
+        wrong: { status:'wrong', msg:'3개 이상의 관심사를 입력하세요.' },
+        good: {status:'good', msg:''}
+    },
+    validate(length){
+        if(length < 3){
+            this.status = false;
+            return this.msg.wrong; 
+        }
+        else {
+            this.status = true;
+            return this.msg.good;
+        }
+    }
+}
+
+const validName = {
+    dom: ['input-name'],
+    type:'input',
+    field: 'name',
+    name: '이름',    
+}
+
+const validGender = {
+    dom: ['input-gender'],
+    type:'input',
+    field: 'gender',
+    name: '성별',    
+}
+
+const validAgreement = {
+    dom: ['input-agree'],
+    type:'checkbox',
+    field: 'agreement',
+    name: '약관',    
+}
+
+export { validator, showMsg, validFavorite };
