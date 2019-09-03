@@ -1,6 +1,5 @@
 import { agree } from '../components/agree.js';
 
-//TODO: 다시누르면 체크박스 초기화
 const agreement = {
     init(){
       this.popUpAgree();
@@ -9,6 +8,7 @@ const agreement = {
         const target = document.querySelector('.agreecheck');
         target.addEventListener('click',()=>{
             document.querySelector('body').insertAdjacentHTML('afterbegin',agree);
+            this.resetAgree();
             this.activeBtn();
             this.closeAgree();
         })
@@ -39,6 +39,10 @@ const agreement = {
            checkbox.checked = true;
            this.removeAgree();
         })
+    },
+    resetAgree(){
+        const checkbox=document.querySelector('.input-agree');
+        checkbox.checked = false;
     }
 }
 export { agreement };

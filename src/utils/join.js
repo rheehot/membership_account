@@ -1,7 +1,6 @@
 import { JOIN } from '../components/join.js';
 import users from '../assets/userData.js';
  
-
 const join = {
     init(validator){
         const target = document.querySelector('.join');
@@ -37,7 +36,7 @@ const join = {
         })
     },
     async postForm(){
-        //전체 데이터 포스트
+        //TODO: 전체 데이터 비동기 포스트
         const id= document.querySelector('.input-id').value;
         const pw= document.querySelector('.input-pw').value;
         postData({id:id, pw:pw})

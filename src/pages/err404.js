@@ -7,8 +7,6 @@ let error404 = {
         `
         return view
     },
-    init: async() => {
-    },
     after_render: async () => {
     }
 }
