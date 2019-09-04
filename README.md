@@ -35,6 +35,7 @@
 ├── views
 ├── models
 └── app.js
+```
 
 ### 🏠 [Homepage](https://github.com/aereeeee/membership-login#readme)
 
