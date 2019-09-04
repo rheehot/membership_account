@@ -31,6 +31,22 @@ npm start
 npm run test
 ```
 
+## Technologies
+
+| **Tech** | **Description** |
+|----------|-------|
+| [Node.js](https://nodejs.org/ko/) | Node.js® is a JavaScript runtime built on Chrome's V8 JavaScript engine |
+| [Express](https://expressjs.com/) | Fast, unopinionated, minimalist web framework for Node.js |
+| [nodemon](https://www.npmjs.com/package/nodemon) | nodemon is a tool that helps develop node.js based applications by automatically restarting the node application when file changes in the directory are detected |
+| [lowdb](https://github.com/typicode/lowdb) | lowdb is a small local JSON database powered by Lodash (supports Node, Electron and the browser) |
+| [Bootstrap](https://getbootstrap.com/) | Build responsive, mobile-first projects on the web with the world’s most popular front-end component library. |
+| [ESLint](https://eslint.org/) | The pluggable linting utility for JavaScript and JSX |
+| [Editor Config](https://editorconfig.org) | EditorConfig helps maintain consistent coding styles for multiple developers working on the same project across various editors and IDEs. |
+| [Husky](https://github.com/typicode/husky) | Prevent bad git commit, git push and more 🐶 woof! |
+| [Commitlint](https://commitlint.js.org) | Lint commit messages |
+| [Standard Version](https://github.com/conventional-changelog/standard-version) | Automate versioning and CHANGELOG generation |
+
+
 ## Author
 
 👤 **aeree cho**
