@@ -1,5 +1,7 @@
 const createError = require('http-errors');
 const express = require('express');
+const low = require('lowdb');
+const FileAsync = require('lowdb/adapters/FileAsync');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
@@ -36,6 +38,11 @@ app.use((err, req, res) => {
   // render the error page
   res.status(err.status || 500);
   res.render('error');
+});
+
+const server = app.listen(3000, () => {
+  const port = server.address();
+  console.log(`Express server listening on port  ${port.port}`);
 });
 
 module.exports = app;

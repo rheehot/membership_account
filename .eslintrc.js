@@ -15,6 +15,9 @@ module.exports = {
   },
   rules: {
     "import/extensions": "off",
-    "import/no-unresolved": "off"
+    "import/no-unresolved": "off",
+    "no-console": "off",
+    "import/newline-after-import": "off",
+    "no-unused-vars": "off"
   }
 };
