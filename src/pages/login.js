@@ -1,5 +1,4 @@
 import getData from '../utils/loigin.js';
-
 const logIn = {
     render : async () => {
         let view =  /*html*/`

@@ -6,7 +6,7 @@ const join = {
         const target = document.querySelector('.join');
         target.addEventListener('click',()=>{
             validator.emptyCheckInit();
-            const checkMsg = validator.errorMsg;
+            const checkMsg = validator.data;
             const MSG = [];
             for( let el in checkMsg){
                 if(checkMsg[el]=== 'empty') MSG.push(`${el} 값을 입력해주세요`)

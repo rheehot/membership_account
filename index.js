@@ -18,6 +18,7 @@ const routes = {
     '/login': logIn
 };
 
+
 const router = async () => {
     const header = null || document.getElementById('header_container');
     const content = null || document.getElementById('page_container');
