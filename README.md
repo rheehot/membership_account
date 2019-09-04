@@ -1,4 +1,4 @@
-<h1 align="center">Welcome to membership-login 👋</h1>
+<h1 align="center">membership-login poroject </h1>
 <p>
   <img alt="Version" src="https://img.shields.io/badge/version-1.0.0-blue.svg?cacheSeconds=2592000" />
   <a href="https://github.com/aereeeee/membership-login#readme">
@@ -67,7 +67,6 @@ npm run test
 | [lowdb](https://github.com/typicode/lowdb) | lowdb is a small local JSON database powered by Lodash (supports Node, Electron and the browser) |
 | [Bootstrap](https://getbootstrap.com/) | Build responsive, mobile-first projects on the web with the world’s most popular front-end component library. |
 | [ESLint](https://eslint.org/) | The pluggable linting utility for JavaScript and JSX |
-| [Editor Config](https://editorconfig.org) | EditorConfig helps maintain consistent coding styles for multiple developers working on the same project across various editors and IDEs. |
 | [Husky](https://github.com/typicode/husky) | Prevent bad git commit, git push and more 🐶 woof! |
 | [Commitlint](https://commitlint.js.org) | Lint commit messages |
 | [Standard Version](https://github.com/conventional-changelog/standard-version) | Automate versioning and CHANGELOG generation |
@@ -75,11 +74,11 @@ npm run test
 
 ## Author
 
-👤 **aeree cho**
+**aeree cho**
 
 * Github: [@aereeeee](https://github.com/aereeeee)
 
-## 🤝 Contributing
+## Contributing
 
 Contributions, issues and feature requests are welcome!<br />Feel free to check [issues page](https://github.com/aereeeee/membership-login/issues).
 
@@ -88,4 +87,3 @@ Contributions, issues and feature requests are welcome!<br />Feel free to check 
 Give a ⭐️ if this project helped you!
 
 ***
-_This README was generated with ❤️ by [readme-md-generator](https://github.com/kefranabg/readme-md-generator)_
