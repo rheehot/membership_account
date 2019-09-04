@@ -2,11 +2,9 @@ const Footer = {
     render: async () => {
         let view =  /*html*/`
         <footer class="footer">
-            <div class="content has-text-centered">
-                <p>
-                    Copyright 2019 aeree cho
-                </p>
-            </div>
+            <p>
+                Copyright 2019 aeree cho
+            </p>
         </footer>
         `
         return view

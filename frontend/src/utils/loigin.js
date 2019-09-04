@@ -24,4 +24,4 @@ const getData = async (user) => {
        console.log('fail to get data', err)
    }
 }
-export default getData;
+export default getData

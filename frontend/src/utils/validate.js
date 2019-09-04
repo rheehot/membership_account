@@ -1,8 +1,10 @@
 import { triggerEvent } from './eventTrigger.js';
 import users from '../assets/userData.js'
 
+//TODO: data가 현재는 name: 에러메세지 or Null , -> 
+// name: {value:값, msg:메세지} 이런식으로 들어가서 post할수있게
 const validator = {
-    errorMsg:{},
+    data:{},
     init(tag){
         this.attatchEvent(validID);
         this.attatchEvent(validPW);
@@ -22,45 +24,15 @@ const validator = {
         target.addEventListener(event, (e) => {
             const arg = tag !== undefined ? tag.tagList.length : target.value;
             const valid = validObj.validate(arg);
-            this.errorMsg[validObj.name] = valid.status !== 'good' ? valid.msg : null;
-            // this.errorMsg[validObj.name] = valid;
+            this.data[validObj.name] = valid.status !== 'good' ? valid.msg : null;
             showMsg(validObj, valid);
         })
     },
-    //TODO: 중복코드 줄이기
     emptyCheck(validObj, option){
         validObj.dom.forEach( classname => {
             const target = document.querySelector(`.${classname}`);
-            //약관
-            if(validObj.type === 'checkbox' && !target.checked){
-                this.errorMsg[validObj.name] = option || 'empty';
-            }else if(validObj.type === 'checkbox' && target.checked){
-                this.errorMsg[validObj.name] = null;
-            }
-            // //이름
-            else if(validObj.name === '이름' && target.value === ""){
-                this.errorMsg[validObj.name] = option || 'empty';
-            }else if(validObj.name === '이름' && target.value !== ""){
-                this.errorMsg[validObj.name] = null;
-            }
-            // //성별
-            else if(validObj.name === '성별' && target.value === ""){
-                this.errorMsg[validObj.name] = option || 'empty';
-            }else if(validObj.name === '성별' && target.value !== ""){
-                this.errorMsg[validObj.name] = null;
-            }
-            //관심사
-            else if(validObj.name === '관심사' && !validObj.status ){
-                this.errorMsg[validObj.name] = option || 'empty';
-            }else if(validObj.name === '관심사' && validObj.status){
-                this.errorMsg[validObj.name] = this.errorMsg[validObj.name];
-            }
-            //그외
-            else if(target.value === ""){
-                this.errorMsg[validObj.name] = option || 'empty';
-            }else{
-                this.errorMsg[validObj.name] = this.errorMsg[validObj.name];
-            }
+            const emptyMsg= option || '값을 입력해주세요'
+            validObj.empty(this.data, target, emptyMsg);
         });
     },
     emptyCheckInit(){
@@ -103,6 +75,9 @@ const validID = {
             return d.id;
         });
         return data.includes(id);
+    },
+    empty(data, target, option){
+        data[this.name]= target.value === ""? option || 'empty': data[this.name];
     }
 }
 
@@ -135,6 +110,9 @@ const validPW = {
         else if(!this.regExpPw.completeErr.test(pw)) return this.msg.completeErr;
         else return this.msg.good;
     },
+    empty(data, target, option){
+        data[this.name]= target.value === ""? option || 'empty': data[this.name];
+    }
 }
 
 const reconfirmPW = {
@@ -148,6 +126,9 @@ const reconfirmPW = {
     },
     validate(confirmpw, pw = document.querySelector('.input-pw')){
         return pw.value === confirmpw? this.msg.good : this.msg.wrong;
+    },
+    empty(data, target, option){
+        data[this.name]= target.value === ""? option || 'empty': data[this.name];
     }
 }
 
@@ -182,6 +163,9 @@ const validBirth = {
     },
     getDateRange(year, month){
         return new Date(year,month,0).getDate();
+    },
+    empty(data, target, option){
+        data[this.name]= target.value === ""? option || 'empty': data[this.name];
     }
 }
 
@@ -198,6 +182,9 @@ const validEmail = {
     validate(email){
         if(!this.regExpEmail.test(email)) return this.msg.wrong;
         else return this.msg.good;
+    },
+    empty(data, target, option){
+        data[this.name]= target.value === ""? option || 'empty': data[this.name];
     }
 }
 
@@ -214,6 +201,9 @@ const validNumber = {
     validate(number){
         if(!this.regExpNumber.test(number)) return this.msg.wrong;
         else return this.msg.good;
+    },
+    empty(data, target, option){
+        data[this.name]= target.value === ""? option || 'empty': data[this.name];
     }
 }
 
@@ -236,6 +226,9 @@ const validFavorite = {
             this.status = true;
             return this.msg.good;
         }
+    },
+    empty(data,target,option){
+        data[this.name]= !this.status? option || 'empty': data[this.name];
     }
 }
 
@@ -243,21 +236,30 @@ const validName = {
     dom: ['input-name'],
     type:'input',
     field: 'name',
-    name: '이름',    
+    name: '이름',  
+    empty(data, target, option){
+        data[this.name]= target.value === ""? option || 'empty': null;
+    }   
 }
 
 const validGender = {
     dom: ['input-gender'],
     type:'input',
     field: 'gender',
-    name: '성별',    
+    name: '성별',  
+    empty(data, target, option){
+        data[this.name]= target.value === ""? option || 'empty': null;
+    }   
 }
 
 const validAgreement = {
     dom: ['input-agree'],
     type:'checkbox',
     field: 'agreement',
-    name: '약관',    
+    name: '약관',   
+    empty(data, target, option){
+        data[this.name]= !target.checked ? option || 'empty': null;
+    } 
 }
 
 export { validator, showMsg, validFavorite };
