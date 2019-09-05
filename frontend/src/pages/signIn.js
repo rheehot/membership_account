@@ -1,12 +1,12 @@
 import { validator } from '../utils/validate.js';
-import { tag } from '../utils/tag.js'
+import { tag } from '../utils/tag.js';
 import { agreement } from '../utils/agree.js';
 import { reset } from '../utils/reset.js';
 import { join } from '../utils/join.js';
 
 const signIn = {
-    render : async () => {
-        let view =  /*html*/`
+  render: async () => {
+    const view = /* html */ `
         <div class="wrap-signIn">
         <h1>회원가입</h1>
         <form action="" id="signIn-form">
@@ -115,19 +115,19 @@ const signIn = {
             </div>
             <div class="submit-btn">
                 <button type= "button" class="reset">초기화</button>
-                <button type= "button" class="join">가입하기</button>
+                <button type= "submit" class="join">가입하기</button>
             </div>
         </form>
     </div>
-        `
-        return view
-    },
-    after_render: async () => {
-        tag.init();
-        agreement.init();   
-        reset.init();
-        join.init(validator);
-        validator.init(tag);
-    }
-}
+        `;
+    return view;
+  },
+  after_render: async () => {
+    tag.init();
+    agreement.init();
+    reset.init();
+    join.init(validator);
+    validator.init(tag);
+  },
+};
 export default signIn;
