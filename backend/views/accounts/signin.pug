@@ -1,0 +1,81 @@
+html
+  body
+    .wrap-signIn
+      h1 회원가입
+      form#signIn-form(action="" method="post")
+        fieldset
+          .id
+            h5 아이디
+            .inputBox
+              input.input-id(name="id" type="text")
+            .error
+          .pw
+            h5 비밀번호
+            .inputBox
+              input.input-pw(name="password" type="password")
+            .error
+          .pw-reconfirm
+            h5 비밀번호 재확인
+            .inputBox
+              input.input-pw-reconfirm(type="password")
+            .error
+          .name
+            h5 이름
+            .inputBox
+              input.input-name(name="name" type="text")
+        fieldset
+          .birth
+            h5 생년월일
+            .birthform
+              .birthYear
+                .inputBox
+                  input.input-year(name="year" type="text" placeholder="년(4자)")
+              .birthMonth
+                .inputBox
+                  select.input-month(name="month")
+                    option(value="" disabled="" selected="" hidden="") 월
+                    option(value="1") 1
+                    option(value="2") 2
+                    option(value="3") 3
+                    option(value="4") 4
+                    option(value="5") 5
+                    option(value="6") 6
+                    option(value="7") 7
+                    option(value="8") 8
+                    option(value="9") 9
+                    option(value="10") 10
+                    option(value="11") 11
+                    option(value="12") 12
+              .birthDate
+                .inputBox
+                  input.input-date(name="date" type="text" placeholder="일")
+            .error
+          .gender
+            h5 성별
+            .inputBox
+              select.input-gender(name="gender")
+                option(value="" disabled="" selected="" hidden="") 성별
+                option(value="여자") 여자
+                option(value="남자") 남자
+          .email
+            h5 이메일
+            .inputBox
+              input.input-email(name="email" type="text")
+            .error
+          .number
+            h5 휴대전화
+            .inputBox
+              input.input-number(name="phone" type="text" placeholder="-없이 입력해주세요 예)0101231234")
+            .error
+          .favorite
+            h5 관심사
+            .inputBox
+              input.input-favorite(name="favorite" type="text")
+            .error
+        .agreement
+          .agreecheck
+            div 약관에 동의합니다.
+            input.input-agree(type="checkbox" disabled="" name="agree")
+        .submit-btn
+          button.reset(type="button") 초기화
+          button.join(type="submit") 가입하기

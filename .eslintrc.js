@@ -18,6 +18,10 @@ module.exports = {
     "import/no-unresolved": "off",
     "no-console": "off",
     "import/newline-after-import": "off",
-    "no-unused-vars": "off"
+    "no-unused-vars": "off",
+    "func-names": "off",
+    "no-use-before-define": "off",
+    "no-useless-escape": "off",
+    "no-param-reassign": "off"
   }
 };

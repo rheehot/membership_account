@@ -1,15 +1,17 @@
-import { validator } from '../utils/validate.js';
-import { tag } from '../utils/tag.js';
-import { agreement } from '../utils/agree.js';
-import { reset } from '../utils/reset.js';
-import { join } from '../utils/join.js';
-
-const signIn = {
-  render: async () => {
-    const view = /* html */ `
-        <div class="wrap-signIn">
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>회원가입</title>
+    <link rel="stylesheet" href="./css/reset.css">
+    <link rel="stylesheet" href="./css/signIn.css">
+</head>
+<body>
+    <div class="wrap">
         <h1>회원가입</h1>
-        <form action="" id="signIn-form">
+        <form action="">
             <fieldset>
                 <div class="id">
                     <h5>아이디</h5>
@@ -71,9 +73,9 @@ const signIn = {
                             <div class="inputBox">
                                 <input type="text" class="input-date" placeholder="일">
                             </div>
-                        </div> 
+                        </div>
+                        <div class="error"></div>
                     </div>
-                    <div class="error"></div>
                 </div>
                 <div class="gender">
                     <h5>성별</h5>
@@ -90,44 +92,33 @@ const signIn = {
                     <div class="inputBox">
                         <input type="text" class="input-email">
                     </div>
-                    <div class="error"></div>
                 </div>
                 <div class= "number">
                     <h5>휴대전화</h5>
                     <div class="inputBox">
                         <input type="text" class="input-number" placeholder="-없이 입력해주세요 예)0101231234">
                     </div>  
-                    <div class="error"></div>
                 </div>
                 <div class= "favorite">
                     <h5>관심사</h5>
                     <div class="inputBox">
                         <input type="text" class="input-favorite">
+                            <span style="background: #000">asdfas</span>
+                        </input>
                     </div>
-                    <div class="error"></div>
                 </div>
             </fieldset>
             <div class="agreement">
                 <div class="agreecheck">
                     <div>약관에 동의합니다.</div>
-                    <input type="checkbox" disabled name="agree" class="input-agree">
+                    <input type="checkbox" name="agree" class="input-agree">
                 </div>
             </div>
             <div class="submit-btn">
-                <button type= "button" class="reset">초기화</button>
-                <button type= "submit" class="join">가입하기</button>
+                <button class="reset">초기화</button>
+                <button class="join">가입하기</button>
             </div>
         </form>
     </div>
-        `;
-    return view;
-  },
-  after_render: async () => {
-    tag.init();
-    agreement.init();
-    reset.init();
-    join.init(validator);
-    validator.init(tag);
-  },
-};
-export default signIn;
+</body>
+</html>

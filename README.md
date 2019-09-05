@@ -9,15 +9,16 @@
   </a>
 </p>
 
-> es6와 node.js express로 로그인 회원가입 프론트/백엔드 구현하기  
-  
+> es6와 node.js express로 로그인 회원가입 프론트/백엔드 구현하기
+
 > 프론트엔드:
+
 ```
 .
 ├── public
 |   ├── css                   # 컴포넌트 별 style sheet
 ├── spec                      # 테스트코드
-|   └──test.js                
+|   └──test.js
 ├── src
 |   ├── assets                #데이터 객체
 |   ├── pages                 #회원가입, 로그인, 메인페이지 컴포넌트
@@ -26,7 +27,9 @@
 ├── index.html
 └── index.js                  #해시를 이용한 SPA 라우팅
 ```
-> 백엔드: 
+
+> 백엔드:
+
 ```
 .
 ├── public
@@ -54,29 +57,28 @@ npm start
 ## Run tests
 
 ```sh
-npm run test
+npm test
 ```
 
 ## Technologies
 
-| **Tech** | **Description** |
-|----------|-------|
-| [Node.js](https://nodejs.org/ko/) | Node.js® is a JavaScript runtime built on Chrome's V8 JavaScript engine |
-| [Express](https://expressjs.com/) | Fast, unopinionated, minimalist web framework for Node.js |
-| [nodemon](https://www.npmjs.com/package/nodemon) | nodemon is a tool that helps develop node.js based applications by automatically restarting the node application when file changes in the directory are detected |
-| [lowdb](https://github.com/typicode/lowdb) | lowdb is a small local JSON database powered by Lodash (supports Node, Electron and the browser) |
-| [Bootstrap](https://getbootstrap.com/) | Build responsive, mobile-first projects on the web with the world’s most popular front-end component library. |
-| [ESLint](https://eslint.org/) | The pluggable linting utility for JavaScript and JSX |
-| [Husky](https://github.com/typicode/husky) | Prevent bad git commit, git push and more 🐶 woof! |
-| [Commitlint](https://commitlint.js.org) | Lint commit messages |
-| [Standard Version](https://github.com/conventional-changelog/standard-version) | Automate versioning and CHANGELOG generation |
-
+| **Tech**                                                                       | **Description**                                                                                                                                                  |
+| ------------------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [Node.js](https://nodejs.org/ko/)                                              | Node.js® is a JavaScript runtime built on Chrome's V8 JavaScript engine                                                                                          |
+| [Express](https://expressjs.com/)                                              | Fast, unopinionated, minimalist web framework for Node.js                                                                                                        |
+| [nodemon](https://www.npmjs.com/package/nodemon)                               | nodemon is a tool that helps develop node.js based applications by automatically restarting the node application when file changes in the directory are detected |
+| [lowdb](https://github.com/typicode/lowdb)                                     | lowdb is a small local JSON database powered by Lodash (supports Node, Electron and the browser)                                                                 |
+| [Bootstrap](https://getbootstrap.com/)                                         | Build responsive, mobile-first projects on the web with the world’s most popular front-end component library.                                                    |
+| [ESLint](https://eslint.org/)                                                  | The pluggable linting utility for JavaScript and JSX                                                                                                             |
+| [Husky](https://github.com/typicode/husky)                                     | Prevent bad git commit, git push and more 🐶 woof!                                                                                                               |
+| [Commitlint](https://commitlint.js.org)                                        | Lint commit messages                                                                                                                                             |
+| [Standard Version](https://github.com/conventional-changelog/standard-version) | Automate versioning and CHANGELOG generation                                                                                                                     |
 
 ## Author
 
 **aeree cho**
 
-* Github: [@aereeeee](https://github.com/aereeeee)
+- Github: [@aereeeee](https://github.com/aereeeee)
 
 ## Contributing
 
@@ -86,4 +88,4 @@ Contributions, issues and feature requests are welcome!<br />Feel free to check 
 
 Give a ⭐️ if this project helped you!
 
-***
+---
