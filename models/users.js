@@ -7,7 +7,7 @@ const userModel = (result) => ({
   email: result.email,
   phone: result.phone,
   favorite: result.favorite,
-  reg_date: result.reg_date,
+  reg_date: Date.now(),
 });
 
 module.exports = { userModel };

@@ -24,7 +24,8 @@
     "lowdb": "^1.0.0",
     "morgan": "~1.9.1",
     "nodemon": "^1.19.2",
-    "pug": "2.0.0-beta11"
+    "pug": "2.0.0-beta11",
+    "serve-favicon": "^2.5.0"
   },
   "devDependencies": {
     "@commitlint/cli": "^8.1.0",

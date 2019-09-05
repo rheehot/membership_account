@@ -1,1 +1,40 @@
-{}
+{
+  "users": {
+    "name": {
+      "id": "asdasdf",
+      "password": "Tv1tcGgOfv2E2ayfiF97L2K/LFJ72ijsZvV514E06xOlKxi72gBf0nQbvEdits2j29TLBbpuPRjsQCGPyHYP8Q==",
+      "name": "",
+      "email": "",
+      "phone": "",
+      "favorite": "",
+      "reg_date": 1567664844467
+    },
+    "asdfsa": {
+      "id": "asdfsa",
+      "password": "Tv1tcGgOfv2E2ayfiF97L2K/LFJ72ijsZvV514E06xOlKxi72gBf0nQbvEdits2j29TLBbpuPRjsQCGPyHYP8Q==",
+      "name": "",
+      "email": "",
+      "phone": "",
+      "favorite": "",
+      "reg_date": 1567664952697
+    },
+    "asdsafd": {
+      "id": "asdsafd",
+      "password": "Tv1tcGgOfv2E2ayfiF97L2K/LFJ72ijsZvV514E06xOlKxi72gBf0nQbvEdits2j29TLBbpuPRjsQCGPyHYP8Q==",
+      "name": "",
+      "email": "",
+      "phone": "",
+      "favorite": "",
+      "reg_date": 1567664964686
+    },
+    "aaaa": {
+      "id": "aaaa",
+      "password": "Tv1tcGgOfv2E2ayfiF97L2K/LFJ72ijsZvV514E06xOlKxi72gBf0nQbvEdits2j29TLBbpuPRjsQCGPyHYP8Q==",
+      "name": "",
+      "email": "",
+      "phone": "",
+      "favorite": "",
+      "reg_date": 1567665021489
+    }
+  }
+}
