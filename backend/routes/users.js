@@ -7,11 +7,69 @@ const passwordHash = require('../utils/passwordHash');
 
 const adapter = new FileAsync('db.json');
 
-// 회원가입 get : view rendering
+// 유저 정보 가져오기
+/**
+ * @api {get} /users/:userId Get User
+ * @apiName GetUser
+ * @apiGroup User
+ *
+ * @apiParam (path) {Number} userId userId.
+ * @apiSuccessExample {json} Success:
+ * HTTP/1.1 200 OK
+ * {
+ *     "user_id": 1,
+ *     "id": "user1",
+ *     "password": "qwerty",
+ *     "nickname": "hello",
+ *     "image": "image1",
+ *     "background": "image2"
+ *     "reg_date": "2018-11-24 14:52:30"
+ * }
+ */
+router.get('/:userId', (req, res, next) => {
+  const { userId } = req.params;
+
+  user
+    .getUser(userId)
+    .then((user) => {
+      res.status(200).json(user);
+    })
+    .catch((err) => {
+      next(err);
+    });
+});
+
 router.get('/signin', (req, res) => {
   res.render('accounts/signin', { title: '회원가입' });
 });
-// 회원가입 post : db query, session create
+// 회원가입 - 유저 등록
+/**
+ * @api {post} /users/signin Create User
+ * @apiName CreateUser
+ * @apiGroup User
+ *
+ * @apiParam {Json} body body.
+ * @apiParamExample {json} User Action:
+ * {
+ *     id: 'user1',
+ *     password: 'Qwerty1!',
+ *     name: '김철수',
+ *     birth: 'result.birth',
+ *     gender: result.gender,
+ *     email: result.email,
+ *     phone: result.phone,
+ *     favorite: result.favorite,
+ * }
+ *
+ * @apiSuccessExample {json} Success:
+ * HTTP/1.1 200 OK
+ * {
+ *     "user_id": 1,
+ *     "id": "user1",
+ *     "pw": "qwerty",
+ *     "reg_date": "2018-11-24 14:52:30"
+ * }
+ */
 router.post('/signin', (req, res) => {
   const user = users.userModel({
     id: req.body.id,
@@ -23,6 +81,7 @@ router.post('/signin', (req, res) => {
     phone: req.body.phone,
     favorite: req.body.favorite,
   });
+
   // TODO: 디비 쿼리 로직 분리
   low(adapter).then((db) => {
     db.set(`users.${user.id}`, user).write();
@@ -31,7 +90,8 @@ router.post('/signin', (req, res) => {
 
   req.session.userid = req.body.id;
   req.session.save(() => {
-    res.redirect('/');
+    // res.status(200).json(user);
+    res.redirect('#a');
   });
 });
 
@@ -49,7 +109,6 @@ router.post('/login', (req, res) => {
 router.get('/logout', (req, res) => {
   req.session.destroy();
   console.log('session을 삭제하였습니다.');
-  // req.logout();
   res.redirect('/');
 });
 
