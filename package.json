@@ -7,14 +7,17 @@
   "private": true,
   "scripts": {
     "start": "nodemon ./app.js",
-    "release": "standard-version"
+    "release": "standard-version",
+    "test": "mocha test/*.spec.js"
   },
   "dependencies": {
     "axios": "^0.19.0",
     "cookie-parser": "~1.4.4",
+    "crypto": "^1.0.1",
     "dayjs": "^1.8.16",
     "debug": "~2.6.9",
     "express": "~4.16.1",
+    "express-session": "^1.16.2",
     "http-errors": "~1.6.3",
     "immer": "^3.2.0",
     "lodash": "^4.17.15",
@@ -42,7 +45,7 @@
     }
   },
   "lint-staged": {
-    "*.{js,jsx,ts,tsx,json,css,scss,md}": [
+    "*.{js,jsx,ts,tsx,json,css,scss}": [
       "git add"
     ]
   },

@@ -1,4 +1,4 @@
-const convertToUser = (result) => ({
+const userModel = (result) => ({
   id: result.id,
   password: result.password,
   name: result.name,
@@ -10,4 +10,4 @@ const convertToUser = (result) => ({
   reg_date: result.reg_date,
 });
 
-module.exports = { convertToUser };
+module.exports = { userModel };
