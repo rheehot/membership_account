@@ -9,7 +9,6 @@ const adapter = new FileAsync('db.json');
 
 // 회원가입 get
 router.get('/signin', (req, res) => {
-  console.log(req.session.user);
   res.render('accounts/signin', { title: '회원가입' });
 });
 
@@ -30,7 +29,10 @@ router.post('/signin', (req, res) => {
     db.set(`users.${user.id}`, user).write();
     return db.defaults({ users: {} }).write();
   });
-  res.redirect('/');
+  req.session.userid = req.body.id;
+  req.session.save(() => {
+    res.redirect('/');
+  });
 });
 
 // 로그인 세션 검사하여 통과하면 성공 메인페이지로 리다이렉트
@@ -46,7 +48,7 @@ router.post('/login', (req, res) => {
 router.get('/logout', (req, res) => {
   req.session.destroy();
   console.log('session을 삭제하였습니다.');
-  req.logout();
+  // req.logout();
   res.redirect('/');
 });
 
