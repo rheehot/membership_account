@@ -43,7 +43,6 @@ app.use((err, req, res) => {
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
 
-  // render the error page
   res.status(err.status || 500);
   res.render('error');
 });
@@ -51,7 +50,6 @@ app.use((err, req, res) => {
 const server = app.listen(3000, () => {
   const port = server.address();
   console.log(`Express server listening on port  ${port.port}`);
-  // db.defaults({ user: {}, count: 0 }).write();
 });
 
 module.exports = app;

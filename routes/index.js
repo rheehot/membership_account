@@ -6,7 +6,7 @@ router.get('/', (req, res, next) => {
   console.log('세션아이디', req.session.id);
   console.log('세션', req.session.userid);
 
-  res.render('index', { title: 'Express' });
+  res.render('index', { title: 'home' });
 });
 
 module.exports = router;
