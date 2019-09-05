@@ -19,6 +19,9 @@ module.exports = {
     "no-console": "off",
     "import/newline-after-import": "off",
     "no-unused-vars": "off",
-    "func-names": "off"
+    "func-names": "off",
+    "no-use-before-define": "off",
+    "no-useless-escape": "off",
+    "no-param-reassign": "off"
   }
 };

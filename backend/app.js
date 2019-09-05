@@ -24,11 +24,10 @@ app.use(favicon(path.join(__dirname, 'public/images', 'favicon.ico')));
 const sessionMiddleWare = session({
   secret: 'aereecho',
   resave: false,
-  saveUninitialized: false,
+  saveUninitialized: true,
   cookie: {
     maxAge: 2000 * 60 * 60,
   },
-  // store: {},
 });
 app.use(sessionMiddleWare);
 

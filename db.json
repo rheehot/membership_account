@@ -1,0 +1,54 @@
+{
+  "users": {
+    "애리": {
+      "id": "애리",
+      "password": "Tv1tcGgOfv2E2ayfiF97L2K/LFJ72ijsZvV514E06xOlKxi72gBf0nQbvEdits2j29TLBbpuPRjsQCGPyHYP8Q==",
+      "name": "",
+      "email": "",
+      "phone": "",
+      "favorite": "",
+      "reg_date": 1567685920069
+    },
+    "aaa": {
+      "id": "aaa",
+      "password": "Tv1tcGgOfv2E2ayfiF97L2K/LFJ72ijsZvV514E06xOlKxi72gBf0nQbvEdits2j29TLBbpuPRjsQCGPyHYP8Q==",
+      "name": "",
+      "email": "",
+      "phone": "",
+      "favorite": "",
+      "reg_date": 1567686017155
+    },
+    "bbb": {
+      "id": "bbb",
+      "password": "Tv1tcGgOfv2E2ayfiF97L2K/LFJ72ijsZvV514E06xOlKxi72gBf0nQbvEdits2j29TLBbpuPRjsQCGPyHYP8Q==",
+      "name": "",
+      "email": "",
+      "phone": "",
+      "favorite": "",
+      "reg_date": 1567686101580
+    },
+    "xxx": {
+      "id": "xxx",
+      "password": "Tv1tcGgOfv2E2ayfiF97L2K/LFJ72ijsZvV514E06xOlKxi72gBf0nQbvEdits2j29TLBbpuPRjsQCGPyHYP8Q==",
+      "name": "",
+      "email": "",
+      "phone": "",
+      "favorite": "",
+      "reg_date": 1567686136010
+    }
+  },
+  "sessions": {
+    "wdGNFDdjsQiIOjjs10qOmDDgkGWFWnuh": {
+      "userid": "aaa"
+    },
+    "X_COUyywQwRdksahQlxsgM0CuwXEB6Jj": {
+      "cookie": {
+        "originalMaxAge": 7200000,
+        "expires": "2019-09-05T14:22:16.018Z",
+        "httpOnly": true,
+        "path": "/"
+      },
+      "userid": "xxx"
+    }
+  }
+}
