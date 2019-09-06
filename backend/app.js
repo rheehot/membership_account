@@ -3,9 +3,7 @@ const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
-const session = require('express-session');
 const favicon = require('serve-favicon');
-
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 
@@ -17,20 +15,11 @@ app.set('view engine', 'pug');
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser('aereecho'));
+app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(favicon(path.join(__dirname, 'public/images', 'favicon.ico')));
 
-const sessionMiddleWare = session({
-  secret: 'aereecho',
-  resave: false,
-  saveUninitialized: true,
-  cookie: {
-    maxAge: 2000 * 60 * 60,
-  },
-});
-app.use(sessionMiddleWare);
-
+app.use('/api', express.static('./apidoc'));
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 

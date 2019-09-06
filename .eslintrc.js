@@ -22,6 +22,8 @@ module.exports = {
     "func-names": "off",
     "no-use-before-define": "off",
     "no-useless-escape": "off",
-    "no-param-reassign": "off"
+    "no-param-reassign": "off",
+    camelcase: "off",
+    "arrow-body-style": "off"
   }
 };

@@ -1,54 +1,32 @@
 {
   "users": {
-    "애리": {
-      "id": "애리",
-      "password": "Tv1tcGgOfv2E2ayfiF97L2K/LFJ72ijsZvV514E06xOlKxi72gBf0nQbvEdits2j29TLBbpuPRjsQCGPyHYP8Q==",
+    "aa": {
+      "id": "aa",
+      "password": "c0Z42W9x8HvmhYg3CDQpjxeSvxy+yrUzFBHjrJRgNOroRqZnxkjN8hd9LqPduu9Ojp+QIBX7KeJRxjYwc3kxjQ==",
       "name": "",
       "email": "",
       "phone": "",
       "favorite": "",
-      "reg_date": 1567685920069
+      "reg_date": 1567770605986
     },
     "aaa": {
       "id": "aaa",
-      "password": "Tv1tcGgOfv2E2ayfiF97L2K/LFJ72ijsZvV514E06xOlKxi72gBf0nQbvEdits2j29TLBbpuPRjsQCGPyHYP8Q==",
+      "password": "8XDwA+OJBzslOAREx+qok/rs7YVzhQy72Z6C4taY3uY3gb+sqcRkq8J9B7BjXr8nAjo8H8yb3oaXHeYKgyElrQ==",
       "name": "",
       "email": "",
       "phone": "",
       "favorite": "",
-      "reg_date": 1567686017155
-    },
-    "bbb": {
-      "id": "bbb",
-      "password": "Tv1tcGgOfv2E2ayfiF97L2K/LFJ72ijsZvV514E06xOlKxi72gBf0nQbvEdits2j29TLBbpuPRjsQCGPyHYP8Q==",
-      "name": "",
-      "email": "",
-      "phone": "",
-      "favorite": "",
-      "reg_date": 1567686101580
-    },
-    "xxx": {
-      "id": "xxx",
-      "password": "Tv1tcGgOfv2E2ayfiF97L2K/LFJ72ijsZvV514E06xOlKxi72gBf0nQbvEdits2j29TLBbpuPRjsQCGPyHYP8Q==",
-      "name": "",
-      "email": "",
-      "phone": "",
-      "favorite": "",
-      "reg_date": 1567686136010
+      "reg_date": 1567760235262
     }
   },
   "sessions": {
-    "wdGNFDdjsQiIOjjs10qOmDDgkGWFWnuh": {
-      "userid": "aaa"
-    },
-    "X_COUyywQwRdksahQlxsgM0CuwXEB6Jj": {
+    "301231b0-d084-11e9-9c11-a5b9727c032f": {
       "cookie": {
-        "originalMaxAge": 7200000,
-        "expires": "2019-09-05T14:22:16.018Z",
+        "maxAge": 7200000,
         "httpOnly": true,
-        "path": "/"
+        "expires": "2019-09-06T10:56:17.227Z"
       },
-      "userid": "xxx"
+      "user_id": "aa"
     }
   }
 }
