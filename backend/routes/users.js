@@ -80,6 +80,8 @@ router.post('/signin', createSession, (req, res) => {
  *
  * @apiSuccessExample Success-Response:
  * HTTP/1.1 204 No Content
+ *
+ * @apiError NoAccessRight
  * @apiErrorExample Error-Response:
  * HTTP/1.1 403 Forbidden
  */
@@ -113,13 +115,7 @@ router.get('/login', (req, res, next) => {
  * }
  *
  * @apiSuccessExample Success-Response:
- * HTTP/1.1 200 OK
- * {
- *     "id": "user1",
- *     "name": "aer4ee",
- *     "reg_data": "2018-11-24 14:52:30",
- * }
- *
+ * HTTP/1.1 204 No Content
  * @apiErrorExample Error-Response:
  * HTTP/1.1 403 Forbidden
  */
@@ -143,7 +139,7 @@ router.post('/login', createSession, (req, res) => {
         cookie: req.cookieOption,
         user_id: user.id,
       }).write();
-      res.status(200).json({ user_id: user.id });
+      res.status(204).end();
     }
   });
 });
