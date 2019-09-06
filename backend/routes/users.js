@@ -138,7 +138,7 @@ router.post('/login', createSession, (req, res) => {
  * HTTP/1.1 204 No Content
  * HTTP/1.1 409 Conflict
  */
-router.get('/id/:userId', (req, res) => {
+router.get('/id/:userId', (req, res, next) => {
   low(adapter)
     .then((db) => {
       return db
@@ -152,6 +152,9 @@ router.get('/id/:userId', (req, res) => {
       } else {
         res.status(409).end();
       }
+    })
+    .catch((err) => {
+      next(err);
     });
 });
 
