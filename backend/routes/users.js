@@ -30,10 +30,9 @@ router.get('/signin', (req, res) => {
  *     "email": "email@gmail.com",
  *     "phone": "01012345678",
  *     "favorite": "["a","b","c"]",
- *     "payload": {}
  * }
  *
- * @apiSuccessExample
+ * @apiSuccessExample Success-Response:
  * HTTP/1.1 200 OK
  * {
  *     "id": "user1",
@@ -79,9 +78,9 @@ router.post('/signin', createSession, (req, res) => {
  * @apiName Check Session
  * @apiGroup User
  *
- * @apiSuccessExample {json} Success:
- * HTTP/1.1 200 OK
- * @apiFailExample session unexist
+ * @apiSuccessExample Success-Response:
+ * HTTP/1.1 204 No Content
+ * @apiErrorExample Error-Response:
  * HTTP/1.1 403 Forbidden
  */
 router.get('/login', (req, res, next) => {
@@ -92,16 +91,38 @@ router.get('/login', (req, res, next) => {
       .value();
 
     if (sess === undefined) {
-      res.render('accounts/login');
-      // res.status(403).end();
+      res.status(403).end();
     } else {
       res.redirect('/');
-      // res.status(200).end();
+      res.status(204).end();
     }
   });
 });
 
-// 로그인 post: db query, session create
+// 로그인 - 유저 체크, 세션 생성
+/**
+ * @api {post} /users/login Check User Create Session
+ * @apiName CreateSession
+ * @apiGroup User
+ *
+ * @apiParam {Json} body body.
+ * @apiParamExample {json} User Action:
+ * {
+ *     "id": "user1",
+ *     "password": "qwerty",
+ * }
+ *
+ * @apiSuccessExample Success-Response:
+ * HTTP/1.1 200 OK
+ * {
+ *     "id": "user1",
+ *     "name": "aer4ee",
+ *     "reg_data": "2018-11-24 14:52:30",
+ * }
+ *
+ * @apiErrorExample Error-Response:
+ * HTTP/1.1 403 Forbidden
+ */
 router.post('/login', createSession, (req, res) => {
   low(adapter).then((db) => {
     const user = db
@@ -134,8 +155,9 @@ router.post('/login', createSession, (req, res) => {
  * @apiGroup User
  *
  * @apiParam (path) {String} userId
- * @apiSuccessExample {json} Success:
+ * @apiSuccessExample Success-Response:
  * HTTP/1.1 204 No Content
+ * @apiErrorExample Error-Response:
  * HTTP/1.1 409 Conflict
  */
 router.get('/id/:userId', (req, res, next) => {
@@ -165,10 +187,11 @@ router.get('/id/:userId', (req, res, next) => {
  * @apiGroup User
  *
  * @apiParam (path) {String} userId userId.
- * @apiSuccessExample {json} Success:
+ * @apiSuccessExample Success-Response:
  * HTTP/1.1 204 No Content
  */
 router.delete('/logout/:userId', (req, res, next) => {
+  // router.delete('/logout/:userId', (req, res, next) => {
   // TODO: 유저아이디까지 체크하기
   low(adapter)
     .then((db) => {
