@@ -23,6 +23,7 @@ module.exports = {
     "no-use-before-define": "off",
     "no-useless-escape": "off",
     "no-param-reassign": "off",
-    camelcase: "off"
+    camelcase: "off",
+    "arrow-body-style": "off"
   }
 };

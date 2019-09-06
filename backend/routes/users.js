@@ -1,40 +1,12 @@
 const express = require('express');
 const router = express.Router();
 const low = require('lowdb');
-const uuid = require('uuid/v1');
 const FileAsync = require('lowdb/adapters/FileAsync');
 const createSession = require('../utils/createSession');
 const users = require('../models/users');
 const passwordHash = require('../utils/passwordHash');
 
 const adapter = new FileAsync('db.json');
-
-// 유저 조회 (아이디 중복체크)
-/**
- * @api {get} /users/id/:id Id Check
- * @apiName Check Id
- * @apiGroup User
- *
- * @apiParam (path) {String} userId
- * @apiSuccessExample Unused Id
- * HTTP/1.1 200 OK
- * @apiFailExample Used Id
- * HTTP/1.1 409 Conflict
- */
-router.get('/id/:id', (req, res) => {
-  low(adapter).then((db) => {
-    const user = db
-      .get('users')
-      .has(req.params.id)
-      .value();
-
-    if (user) {
-      res.status(200).end();
-    } else {
-      res.status(409).end();
-    }
-  });
-});
 
 // temp view render
 router.get('/signin', (req, res) => {
@@ -70,7 +42,7 @@ router.get('/signin', (req, res) => {
  * }
  */
 router.post('/signin', createSession, (req, res) => {
-  // 미들웨어에서 넘어온 세션아이디와 옵션을 쿠키에 담아 생성한다.
+  // 미들웨어에서 넘어온 세션아이디와 옵션을 쿠키에 담아 발행한다.
   res.cookie('sess_id', req.sessId, req.cookieOption);
 
   const user = users.userModel({
@@ -86,16 +58,19 @@ router.post('/signin', createSession, (req, res) => {
 
   // TODO: 디비 쿼리 로직 분리
   low(adapter).then((db) => {
-    // 유저 데이터 저장
     db.set(`users.${user.id}`, user).write();
-    // 세션 데이터 저장
     db.set(`sessions.${req.sessId}`, {
       cookie: req.cookieOption,
       user_id: user.id,
     }).write();
     return db.defaults({ users: {}, sessions: {} }).write();
   });
-  res.status(200).send('');
+  // TODO: 에러처리
+  res.status(200).json({
+    id: user.id,
+    name: user.name,
+    reg_date: user.reg_date,
+  });
 });
 
 // 로그인 세션 체크
@@ -104,61 +79,111 @@ router.post('/signin', createSession, (req, res) => {
  * @apiName Check Session
  * @apiGroup User
  *
- * @apiParam no param
  * @apiSuccessExample {json} Success:
  * HTTP/1.1 200 OK
+ * @apiFailExample session unexist
+ * HTTP/1.1 403 Forbidden
  */
-router.get('/login', (req, res) => {
-  if (req.session.user_id) {
-    console.log('세션확인');
-    res.redirect('/');
-  } else {
-    console.log('세션없음');
-    res.render('accounts/login');
-  }
-  // low(adapter).then((db) => {
-  //   // 디비에서 세션 찾고 하려면 express-session 모듈 쓸수가 없다..
-  //   const sess = db.get('sessions').get(req.session.id);
-  //   if (sess === undefined) {
-  //     res.status(403).end();
-  //   } else {
-  //     res.status(200).json(sess);
-  //   }
-  // });
-});
-
-// 로그인 post: db query, session create
-
-router.post('/login', (req, res) => {
-  low(adapter).then(async (db) => {
-    const user = db
-      .get('users')
-      .get(req.body.id)
+router.get('/login', (req, res, next) => {
+  low(adapter).then((db) => {
+    const sess = db
+      .get('sessions')
+      .get(req.cookies.sess_id)
       .value();
-    console.log(user);
-    if (user.password === passwordHash(req.body.pw)) {
-      // 세션발행
-      req.session.user_id = user.id;
-      req.session.user_name = user.name;
-      req.session.regenerate((err) => {
-        console.log(req.session);
-      });
-      // 세션디비 저장
-      db.set(`sessions.${req.session.id}`, req.session).write();
-      res.redirect('/');
+
+    if (sess === undefined) {
+      res.render('accounts/login');
+      // res.status(403).end();
     } else {
-      console.log('비번틀림');
-      res.end();
+      res.redirect('/');
+      // res.status(200).end();
     }
   });
 });
 
-// 로그아웃 get : view rendering, session destroy
-router.get('/logout', (req, res) => {
-  res.clearCookie('sess_id');
-  // req.session.destroy();
-  console.log('session을 삭제하였습니다.');
-  res.redirect('/');
+// 로그인 post: db query, session create
+router.post('/login', createSession, (req, res) => {
+  low(adapter).then((db) => {
+    const user = db
+      .get('users')
+      .get(req.body.id)
+      .value();
+    // 유저아이디 없음
+    if (user === undefined) {
+      res.status(403).end();
+    }
+    // 유저아이디는 있으나 비번 틀림
+    if (user.password !== passwordHash(req.body.pw)) {
+      res.status(403).end();
+    } else {
+      // TODO: 쿠키발행, 세션디비 저장 로직을 미들웨어로 분리하기
+      res.cookie('sess_id', req.sessId, req.cookieOption);
+      db.set(`sessions.${req.sessId}`, {
+        cookie: req.cookieOption,
+        user_id: user.id,
+      }).write();
+      res.status(200).json({ user_id: user.id });
+    }
+  });
 });
 
+// 유저 조회 (아이디 중복체크)
+/**
+ * @api {get} /users/id/:id Id Check
+ * @apiName Check Id
+ * @apiGroup User
+ *
+ * @apiParam (path) {String} userId
+ * @apiSuccessExample {json} Success:
+ * HTTP/1.1 204 No Content
+ * HTTP/1.1 409 Conflict
+ */
+router.get('/id/:userId', (req, res) => {
+  low(adapter)
+    .then((db) => {
+      return db
+        .get('users')
+        .has(req.params.userId)
+        .value();
+    })
+    .then((user) => {
+      if (user) {
+        res.status(204).end();
+      } else {
+        res.status(409).end();
+      }
+    });
+});
+
+// 로그아웃 세션 삭제
+/**
+ * @api {delete} /logout Delete Session
+ * @apiName Delete Session
+ * @apiGroup User
+ *
+ * @apiParam (path) {String} userId userId.
+ * @apiSuccessExample {json} Success:
+ * HTTP/1.1 204 No Content
+ */
+router.delete('/logout/:userId', (req, res, next) => {
+  // TODO: 유저아이디까지 체크하기
+  low(adapter)
+    .then((db) => {
+      const session = db
+        .get('sessions')
+        .has(req.cookies.sess_id)
+        .value();
+
+      if (session) {
+        db.unset(`sessions.${req.cookies.sess_id}`).write();
+        res.clearCookie('sess_id');
+      }
+    })
+    .then(() => {
+      res.status(204).end();
+    })
+    .catch((err) => {
+      next(err);
+    });
+});
 module.exports = router;

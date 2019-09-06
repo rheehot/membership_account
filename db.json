@@ -2,39 +2,31 @@
   "users": {
     "aa": {
       "id": "aa",
-      "password": "Tv1tcGgOfv2E2ayfiF97L2K/LFJ72ijsZvV514E06xOlKxi72gBf0nQbvEdits2j29TLBbpuPRjsQCGPyHYP8Q==",
+      "password": "c0Z42W9x8HvmhYg3CDQpjxeSvxy+yrUzFBHjrJRgNOroRqZnxkjN8hd9LqPduu9Ojp+QIBX7KeJRxjYwc3kxjQ==",
       "name": "",
       "email": "",
       "phone": "",
       "favorite": "",
-      "reg_date": 1567756284952
+      "reg_date": 1567760077137
     },
-    "ㅠㅠ": {
-      "id": "ㅠㅠ",
-      "password": "Tv1tcGgOfv2E2ayfiF97L2K/LFJ72ijsZvV514E06xOlKxi72gBf0nQbvEdits2j29TLBbpuPRjsQCGPyHYP8Q==",
+    "aaa": {
+      "id": "aaa",
+      "password": "8XDwA+OJBzslOAREx+qok/rs7YVzhQy72Z6C4taY3uY3gb+sqcRkq8J9B7BjXr8nAjo8H8yb3oaXHeYKgyElrQ==",
       "name": "",
       "email": "",
       "phone": "",
       "favorite": "",
-      "reg_date": 1567756445935
+      "reg_date": 1567760235262
     }
   },
   "sessions": {
-    "20180270-d07b-11e9-855f-d9d9bd9ba53d": {
+    "301231b0-d084-11e9-9c11-a5b9727c032f": {
       "cookie": {
         "maxAge": 7200000,
         "httpOnly": true,
-        "expires": "2019-09-06T09:51:24.952Z"
+        "expires": "2019-09-06T10:56:17.227Z"
       },
       "user_id": "aa"
-    },
-    "800be9d0-d07b-11e9-b37a-b73d9bf52f83": {
-      "cookie": {
-        "maxAge": 7200000,
-        "httpOnly": true,
-        "expires": "2019-09-06T09:54:05.935Z"
-      },
-      "user_id": "ㅠㅠ"
     }
   }
 }

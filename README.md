@@ -72,6 +72,7 @@ npm test
 | [ESLint](https://eslint.org/)                                                  | The pluggable linting utility for JavaScript and JSX                                                                                                             |
 | [Husky](https://github.com/typicode/husky)                                     | Prevent bad git commit, git push and more 🐶 woof!                                                                                                               |
 | [Commitlint](https://commitlint.js.org)                                        | Lint commit messages                                                                                                                                             |
+| [apidoc](https://http://apidocjs.com)                                          | creates a documentation from API annotations in your source code.                                                                                                |
 | [Standard Version](https://github.com/conventional-changelog/standard-version) | Automate versioning and CHANGELOG generation                                                                                                                     |
 
 ## Author
