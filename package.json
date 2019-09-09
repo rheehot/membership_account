@@ -6,7 +6,7 @@
   "license": "ISC",
   "private": true,
   "scripts": {
-    "start": "node ./backend/app.js --ignore db.json",
+    "start": "nodemon app.js --ignore db.json",
     "release": "standard-version",
     "test": "mocha ./backend/test/*.spec.js",
     "apidoc": "apidoc -i backend/ -o apidoc/ -e node_modules/"
