@@ -19,9 +19,9 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(favicon(path.join(__dirname, 'public/images', 'favicon.ico')));
 
+app.use('/', express.static('./frontend'));
 app.use('/api', express.static('./apidoc'));
-app.use('/', indexRouter);
-app.use('/users', usersRouter);
+app.use('/api/users', usersRouter);
 
 app.use((req, res, next) => {
   next(createError(404));

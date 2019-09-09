@@ -1,5 +1,4 @@
 import Join from '../components/join.js';
-import users from '../assets/userData.js';
 
 const join = {
   init(validator) {
@@ -13,6 +12,7 @@ const join = {
         else if (checkMsg[el] !== null) MSG.push(`${el}: ${checkMsg[el]}`);
       }
       MSG.length > 0 ? this.popUpJoin(MSG) : this.postForm();
+      //   this.postForm();
     });
   },
   popUpJoin(msg) {
@@ -34,27 +34,47 @@ const join = {
     });
   },
   async postForm() {
-    // TODO: 전체 데이터 비동기 포스트
-    const id = document.querySelector('.input-id').value;
-    const pw = document.querySelector('.input-pw').value;
-    postData({ id, pw });
-    window.location.href = `#/home/${id}`;
+    const data = {};
+    const formData = new FormData(document.getElementById('signIn-form'));
+    const birth = new Date(
+      formData.get('year'),
+      formData.get('month'),
+      formData.get('date'),
+    );
+    formData.append('birth', birth);
+    // TODO: validator에서 넘어온 값으로 쓰면 더 좋을듯
+    const favorite = [];
+    const tags = document.querySelectorAll('.tag span');
+    tags.forEach((tag) => {
+      favorite.push(tag.innerText);
+    });
+    formData.append('favorite', favorite);
+    formData.forEach((value, key) => {
+      data[key] = value;
+    });
+
+    await postData('/api/users/signin', data)
+      .then((response) => console.log(JSON.stringify(response)))
+      .catch((error) => console.error(error));
+
+    window.location.href = '#/home';
   },
 };
 
-const postData = async (user) => {
+const postData = async (url = '', data = {}) => {
   const options = {
     method: 'POST',
+    cache: 'no-cache',
+    mode: 'same-origin',
+    credentials: 'include',
     headers: {
+      Accept: 'application/json',
       'Content-Type': 'application/json',
     },
+    body: JSON.stringify(data),
   };
-  try {
-    users.push(user);
-    console.log(users);
-  } catch (err) {
-    console.log('Error getting documents', err);
-  }
+  const response = await fetch(url, options).then((res) => res.json());
+  return response;
 };
 
-export { join };
+export default join;

@@ -1,8 +1,8 @@
 import { validator } from '../utils/validate.js';
-import { tag } from '../utils/tag.js';
+import tag from '../utils/tag.js';
 import { agreement } from '../utils/agree.js';
 import { reset } from '../utils/reset.js';
-import { join } from '../utils/join.js';
+import join from '../utils/join.js';
 
 const signIn = {
   render: async () => {
@@ -14,14 +14,14 @@ const signIn = {
                 <div class="id">
                     <h5>아이디</h5>
                     <div class="inputBox">
-                        <input type="text" class="input-id">
+                        <input name="id" ype="text" class="input-id">
                     </div>
                     <div class="error"></div>
                 </div>
                 <div class="pw">
                     <h5>비밀번호</h5>
                     <div class="inputBox">
-                        <input type="password" class="input-pw">
+                        <input name="pw" type="password" class="input-pw">
                     </div>
                     <div class="error"></div>
                 </div>
@@ -35,7 +35,7 @@ const signIn = {
                 <div class="name">
                     <h5>이름</h5>
                     <div class="inputBox">
-                        <input type="text" class="input-name">
+                        <input name="name" type="text" class="input-name">
                     </div>
                 </div>
             </fieldset>
@@ -45,7 +45,7 @@ const signIn = {
                     <div class="birthform">
                         <div class="birthYear">
                             <div class="inputBox">
-                                <input type="text" class="input-year" placeholder="년(4자)">
+                                <input name="year" type="text" class="input-year" placeholder="년(4자)">
                             </div>
                         </div>
                         <div class="birthMonth">
@@ -69,7 +69,7 @@ const signIn = {
                         </div>
                         <div class="birthDate">
                             <div class="inputBox">
-                                <input type="text" class="input-date" placeholder="일">
+                                <input name="date" type="text" class="input-date" placeholder="일">
                             </div>
                         </div> 
                     </div>
@@ -88,21 +88,21 @@ const signIn = {
                 <div class= "email">
                     <h5>이메일</h5>
                     <div class="inputBox">
-                        <input type="text" class="input-email">
+                        <input name="email" type="text" class="input-email">
                     </div>
                     <div class="error"></div>
                 </div>
                 <div class= "number">
                     <h5>휴대전화</h5>
                     <div class="inputBox">
-                        <input type="text" class="input-number" placeholder="-없이 입력해주세요 예)0101231234">
+                        <input name="number" type="text" class="input-number" placeholder="-없이 입력해주세요 예)0101231234">
                     </div>  
                     <div class="error"></div>
                 </div>
                 <div class= "favorite">
                     <h5>관심사</h5>
                     <div class="inputBox">
-                        <input type="text" class="input-favorite">
+                        <input name="favorite" type="text" class="input-favorite">
                     </div>
                     <div class="error"></div>
                 </div>
@@ -115,7 +115,7 @@ const signIn = {
             </div>
             <div class="submit-btn">
                 <button type= "button" class="reset">초기화</button>
-                <button type= "submit" class="join">가입하기</button>
+                <button type= "button" class="join">가입하기</button>
             </div>
         </form>
     </div>

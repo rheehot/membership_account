@@ -1,4 +1,4 @@
-import { triggerEvent } from './eventTrigger.js';
+import triggerEvent from './eventTrigger.js';
 import users from '../assets/userData.js';
 
 // TODO: data가 현재는 name: 에러메세지 or Null , ->

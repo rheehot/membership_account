@@ -44,6 +44,7 @@ router.post('/signin', createSession, (req, res) => {
   // 미들웨어에서 넘어온 세션아이디와 옵션을 쿠키에 담아 발행한다.
   res.cookie('sess_id', req.sessId, req.cookieOption);
 
+  console.log(req.body);
   const user = users.userModel({
     id: req.body.id,
     password: passwordHash(req.body.password),
