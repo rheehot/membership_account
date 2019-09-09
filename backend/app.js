@@ -41,7 +41,7 @@ app.use((err, req, res) => {
   res.render('error');
 });
 
-const server = app.listen(3000, () => {
+const server = app.listen(process.env.PORT || 3000, () => {
   const port = server.address();
   console.log(`Express server listening on port  ${port.port}`);
 });
