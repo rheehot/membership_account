@@ -1,32 +1,23 @@
 {
   "users": {
-    "boostcamp": {
-      "id": "boostcamp",
+    "aaa": {
+      "id": "aaa",
       "password": "4JjzDQ+iSQuXtHU1JmHBLS7jPXmxmo8i6TGY3NPjtRvDeVFymBHzctf5j98KDLJq7LPFQ9xjzQ8ri5gdBvYkFg==",
-      "name": "조애리",
-      "birth": "Tue Apr 27 1999 00:00:00 GMT+0900 (한국 표준시)",
-      "gender": "여자",
-      "email": "dofl5576@gmail.com",
-      "favorite": "청소,코딩,슈바",
-      "reg_date": 1568003720031
+      "name": "",
+      "birth": "Sun Dec 31 1899 00:00:00 GMT+0827 (한국 표준시)",
+      "email": "",
+      "favorite": "",
+      "reg_date": 1568012586606
+    },
+    "ddd": {
+      "id": "ddd",
+      "password": "4JjzDQ+iSQuXtHU1JmHBLS7jPXmxmo8i6TGY3NPjtRvDeVFymBHzctf5j98KDLJq7LPFQ9xjzQ8ri5gdBvYkFg==",
+      "name": "",
+      "birth": "Sun Dec 31 1899 00:00:00 GMT+0827 (한국 표준시)",
+      "email": "",
+      "favorite": "",
+      "reg_date": 1568012595480
     }
   },
-  "sessions": {
-    "27c59bd0-d2bb-11e9-b8b4-65da23c65886": {
-      "cookie": {
-        "maxAge": 7200000,
-        "httpOnly": true,
-        "expires": "2019-09-09T06:34:47.950Z"
-      },
-      "user_id": "boostcamp"
-    },
-    "3ae479c0-d2bb-11e9-b9a5-e3d996c649b2": {
-      "cookie": {
-        "maxAge": 7200000,
-        "httpOnly": true,
-        "expires": "2019-09-09T06:35:20.029Z"
-      },
-      "user_id": "boostcamp"
-    }
-  }
+  "sessions": {}
 }

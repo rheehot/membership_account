@@ -11,7 +11,6 @@ import Utils from './src/utils/parseURL.js';
 
 const routes = {
   '/': main,
-  '/home': main,
   '/signin': signIn,
   '/login': logIn,
 };
@@ -29,9 +28,33 @@ const router = async () => {
   const request = Utils.parseRequestURL();
   const parsedURL = request.resource ? `/${request.resource}` : '/';
 
+  let user;
+  await checkSession('/api/users/login')
+    .then((data) => {
+      user = data;
+    })
+    .catch((error) => {
+      user = undefined;
+    });
+
   const page = routes[parsedURL] ? routes[parsedURL] : error404;
-  content.innerHTML = await page.render();
-  await page.after_render();
+  content.innerHTML = await page.render(user);
+  await page.after_render(user);
+};
+
+const checkSession = async (url = '') => {
+  const options = {
+    method: 'GET',
+    cache: 'no-cache',
+    mode: 'same-origin',
+    credentials: 'include',
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+    },
+  };
+  const response = await fetch(url, options).then((res) => res.json());
+  return response;
 };
 
 window.addEventListener('hashchange', router);

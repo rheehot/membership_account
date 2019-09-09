@@ -4,15 +4,15 @@ const join = {
   init(validator) {
     const target = document.querySelector('.join');
     target.addEventListener('click', () => {
-      validator.emptyCheckInit();
-      const checkMsg = validator.data;
-      const MSG = [];
-      for (const el in checkMsg) {
-        if (checkMsg[el] === 'empty') MSG.push(`${el} 값을 입력해주세요`);
-        else if (checkMsg[el] !== null) MSG.push(`${el}: ${checkMsg[el]}`);
-      }
-      MSG.length > 0 ? this.popUpJoin(MSG) : this.postForm();
-      //   this.postForm();
+      //   validator.emptyCheckInit();
+      //   const checkMsg = validator.data;
+      //   const MSG = [];
+      //   for (const el in checkMsg) {
+      //     if (checkMsg[el] === 'empty') MSG.push(`${el} 값을 입력해주세요`);
+      //     else if (checkMsg[el] !== null) MSG.push(`${el}: ${checkMsg[el]}`);
+      //   }
+      //   MSG.length > 0 ? this.popUpJoin(MSG) : this.postForm();
+      this.postForm();
     });
   },
   popUpJoin(msg) {
@@ -57,7 +57,7 @@ const join = {
       .then((response) => console.log(JSON.stringify(response)))
       .catch((error) => console.error(error));
 
-    window.location.href = '#/home';
+    window.location.href = '#/';
   },
 };
 

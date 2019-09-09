@@ -43,8 +43,6 @@ router.get('/signin', (req, res) => {
 router.post('/signin', createSession, (req, res) => {
   // 미들웨어에서 넘어온 세션아이디와 옵션을 쿠키에 담아 발행한다.
   res.cookie('sess_id', req.sessId, req.cookieOption);
-
-  console.log(req.body);
   const user = users.userModel({
     id: req.body.id,
     password: passwordHash(req.body.password),
@@ -80,11 +78,13 @@ router.post('/signin', createSession, (req, res) => {
  * @apiGroup User
  *
  * @apiSuccessExample Success-Response:
- * HTTP/1.1 204 No Content
+ * HTTP/1.1 200
+ * {
+ *    id:'user1'
+ * }
  *
- * @apiError NoAccessRight
  * @apiErrorExample Error-Response:
- * HTTP/1.1 403 Forbidden
+ * HTTP/1.1 204 No Content
  */
 router.get('/login', (req, res, next) => {
   low(adapter).then((db) => {
@@ -94,10 +94,9 @@ router.get('/login', (req, res, next) => {
       .value();
 
     if (sess === undefined) {
-      res.status(403).end();
-    } else {
-      res.redirect('/');
       res.status(204).end();
+    } else {
+      res.status(200).send({ id: sess.user_id });
     }
   });
 });
@@ -179,7 +178,7 @@ router.get('/id/:userId', (req, res, next) => {
 
 // 로그아웃 세션 삭제
 /**
- * @api {delete} /logout Delete Session
+ * @api {delete} /users/logout Delete Session
  * @apiName Delete Session
  * @apiGroup User
  *
@@ -187,7 +186,7 @@ router.get('/id/:userId', (req, res, next) => {
  * @apiSuccessExample Success-Response:
  * HTTP/1.1 204 No Content
  */
-router.delete('/logout/:userId', (req, res, next) => {
+router.delete('/logout', (req, res, next) => {
   // router.delete('/logout/:userId', (req, res, next) => {
   // TODO: 유저아이디까지 체크하기
   low(adapter)

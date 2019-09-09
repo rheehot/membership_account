@@ -1,26 +1,28 @@
-@import url('./common.css');
-.wrap-main{
-    width:100vw;
-    height:100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+@import url("./common.css");
+.wrap-main {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
-.btnBox{
-    width:430px;
-    display:flex;
-    text-align:center;
+.btnBox {
+  width: 430px;
+  display: flex;
+  text-align: center;
 }
-a.btn{
-    flex:1;
-    margin:10px;
-    background:var(--main-primary-color);
-    color:#fff;
-    border:none;
-    font-size:1.2rem;
-    padding:15px 0;
+a.btn,
+div.btn {
+  flex: 1;
+  margin: 10px;
+  background: var(--main-primary-color);
+  color: #fff;
+  border: none;
+  font-size: 1.2rem;
+  padding: 15px 0;
+  cursor: pointer;
 }
-.btnBox.logout{
-    display:none;
+.btnBox.logout {
+  display: none;
 }

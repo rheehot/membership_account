@@ -32,7 +32,7 @@ const logIn = {
       const response = await getData({ id, pw });
 
       if (response) {
-        window.location.href = `#/home/${id}`;
+        window.location.href = '#/';
       } else {
         msg.innerHTML = '일치하는 아이디 패스워드가 없습니다.';
       }
