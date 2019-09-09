@@ -1,32 +1,34 @@
 {
   "users": {
-    "aa": {
-      "id": "aa",
-      "password": "c0Z42W9x8HvmhYg3CDQpjxeSvxy+yrUzFBHjrJRgNOroRqZnxkjN8hd9LqPduu9Ojp+QIBX7KeJRxjYwc3kxjQ==",
-      "name": "",
-      "email": "",
-      "phone": "",
-      "favorite": "",
-      "reg_date": 1567770605986
+    "dofl5576": {
+      "id": "dofl5576",
+      "pw": "pFM7EdunFXCSqlgOTABUEMtmLWBFg4MYdjhSBdfQiDaz+Shdpp5hFnHFYy/iIHI4a5sxJD8b7SR8qxg0Vye65g==",
+      "name": "wehdfo",
+      "birth": "Wed Apr 28 1999 00:00:00 GMT+0900 (한국 표준시)",
+      "gender": "남자",
+      "email": "dofl@gmail.com",
+      "favorite": "a,b,c",
+      "reg_date": 1568032612929
     },
-    "aaa": {
-      "id": "aaa",
-      "password": "8XDwA+OJBzslOAREx+qok/rs7YVzhQy72Z6C4taY3uY3gb+sqcRkq8J9B7BjXr8nAjo8H8yb3oaXHeYKgyElrQ==",
+    "bear11": {
+      "id": "bear11",
+      "pw": "xnHSrDLerogU7T/71XckkVUKd/dCwVuOvrKfwF/gp7pFn/NUudHqwCBakN9QxjrT7iubYbUbZsUZJJjbNuBuRg==",
+      "name": "조애리",
+      "birth": "Wed Apr 28 1999 00:00:00 GMT+0900 (한국 표준시)",
+      "gender": "여자",
+      "email": "neee@gmail.com",
+      "favorite": "dofl,aodf,asdof",
+      "reg_date": 1568036193993
+    },
+    "dofldofl": {
+      "id": "dofldofl",
+      "pw": "pFM7EdunFXCSqlgOTABUEMtmLWBFg4MYdjhSBdfQiDaz+Shdpp5hFnHFYy/iIHI4a5sxJD8b7SR8qxg0Vye65g==",
       "name": "",
+      "birth": "Sun Dec 31 1899 00:00:00 GMT+0827 (한국 표준시)",
       "email": "",
-      "phone": "",
       "favorite": "",
-      "reg_date": 1567760235262
+      "reg_date": 1568038013135
     }
   },
-  "sessions": {
-    "301231b0-d084-11e9-9c11-a5b9727c032f": {
-      "cookie": {
-        "maxAge": 7200000,
-        "httpOnly": true,
-        "expires": "2019-09-06T10:56:17.227Z"
-      },
-      "user_id": "aa"
-    }
-  }
+  "sessions": {}
 }

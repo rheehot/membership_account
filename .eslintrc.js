@@ -24,6 +24,9 @@ module.exports = {
     "no-useless-escape": "off",
     "no-param-reassign": "off",
     camelcase: "off",
-    "arrow-body-style": "off"
+    "arrow-body-style": "off",
+    "no-restricted-syntax": "off",
+    "no-unused-expressions": "off",
+    "prefer-const": "off"
   }
 };
