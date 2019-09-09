@@ -3,31 +3,12 @@
     "dofl5576": {
       "id": "dofl5576",
       "pw": "pFM7EdunFXCSqlgOTABUEMtmLWBFg4MYdjhSBdfQiDaz+Shdpp5hFnHFYy/iIHI4a5sxJD8b7SR8qxg0Vye65g==",
-      "name": "wehdfo",
-      "birth": "Wed Apr 28 1999 00:00:00 GMT+0900 (한국 표준시)",
-      "gender": "남자",
-      "email": "dofl@gmail.com",
-      "favorite": "a,b,c",
-      "reg_date": 1568032612929
-    },
-    "bear11": {
-      "id": "bear11",
-      "pw": "xnHSrDLerogU7T/71XckkVUKd/dCwVuOvrKfwF/gp7pFn/NUudHqwCBakN9QxjrT7iubYbUbZsUZJJjbNuBuRg==",
-      "name": "조애리",
+      "name": "asdf",
       "birth": "Wed Apr 28 1999 00:00:00 GMT+0900 (한국 표준시)",
       "gender": "여자",
-      "email": "neee@gmail.com",
-      "favorite": "dofl,aodf,asdof",
-      "reg_date": 1568036193993
-    },
-    "dofldofl": {
-      "id": "dofldofl",
-      "pw": "pFM7EdunFXCSqlgOTABUEMtmLWBFg4MYdjhSBdfQiDaz+Shdpp5hFnHFYy/iIHI4a5sxJD8b7SR8qxg0Vye65g==",
-      "name": "",
-      "birth": "Sun Dec 31 1899 00:00:00 GMT+0827 (한국 표준시)",
-      "email": "",
-      "favorite": "",
-      "reg_date": 1568038013135
+      "email": "dofl5576@gmail.com",
+      "favorite": "asdf,asdf,asdf",
+      "reg_date": 1568045641912
     }
   },
   "sessions": {}

@@ -1,13 +1,13 @@
 const uuid = require('uuid/v1');
 
 /**
- * Creates Session then passing session Id and cookie options.
+ * Creates Session and generates cookie
  *
  * @param {object,object,function} request, response, next
  * @return {} No return
  */
 
-module.exports = function (req, res, next) {
+module.exports = async function (req, res, next) {
   const sessId = uuid();
 
   if (req.cookies.sess_id) {
@@ -19,11 +19,13 @@ module.exports = function (req, res, next) {
     httpOnly: true,
   };
 
-  req.sessId = sessId;
-  req.cookieOption = {
+  req.sessId = await sessId;
+  req.cookieOption = await {
     ...cookieOption,
     expires: new Date(Date.now() + cookieOption.maxAge),
   };
+
+  res.cookie('sess_id', req.sessId, req.cookieOption);
 
   next();
 };

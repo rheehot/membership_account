@@ -1,125 +1,126 @@
-@import url('./common.css');
-.wrap-signIn{
-    width:var(--main-width);
-    margin:0 auto;
+@import url("./common.css");
+.wrap-signIn {
+  width: var(--main-width);
+  margin: 0 auto;
 }
-h1{
-    font-size:2rem;
-    font-weight: bold;
-    color:var(--main-primary-color);
-    text-align: center;
-    padding:50px 0;
+h1 {
+  font-size: 2rem;
+  font-weight: bold;
+  color: var(--main-primary-color);
+  text-align: center;
+  padding: 50px 0;
 }
-form div{
-    width:100%;
-    padding-bottom:25px;
+form div {
+  width: 100%;
+  padding-bottom: 25px;
 }
-form div h5{
-    font-size:0.9rem;
-    margin-bottom:5px;
-    font-weight: bold;
+form div h5 {
+  font-size: 0.9rem;
+  margin-bottom: 5px;
+  font-weight: bold;
 }
-form div .error{
-    font-size:0.9rem;
-    margin-top:5px;
-    padding-bottom:0;
+form div .error {
+  font-size: 0.9rem;
+  margin-top: 5px;
+  padding-bottom: 0;
 }
-form div .inputBox{
-    width:100%;
-    background:#fff;
-    border:1px solid #dadada;
-    padding:15px;
-    overflow-x: scroll;
+form div .inputBox {
+  width: 100%;
+  background: #fff;
+  border: 1px solid #dadada;
+  padding: 15px;
+  overflow-x: scroll;
 }
-form div input{
-    border:none;
-    width:100%;
-    font-size:1rem;
-    padding:5px 0;
+form div input {
+  border: none;
+  width: 100%;
+  font-size: 1rem;
+  padding: 5px 0;
 }
-form div select{
-    background:#FFF url(https://static.nid.naver.com/images/join/pc/sel_arr_2x.gif) 100% 50% no-repeat;
-    background-size: 20px 8px;
-    width:100%;
-    font-size:1rem;
-    padding:5px 0;
+form div select {
+  background: #fff
+    url(https://static.nid.naver.com/images/join/pc/sel_arr_2x.gif) 100% 50%
+    no-repeat;
+  background-size: 20px 8px;
+  width: 100%;
+  font-size: 1rem;
+  padding: 5px 0;
 }
-form .birth .birthform{
-    padding-bottom: 0;
-    width:100%;
-    display:grid;
-    grid-gap:10px;
-    grid-template-columns: 1fr 1fr 1fr;
+form .birth .birthform {
+  padding-bottom: 0;
+  width: 100%;
+  display: grid;
+  grid-gap: 10px;
+  grid-template-columns: 1fr 1fr 1fr;
 }
-.birthform div{
-    padding-bottom:0;
+.birthform div {
+  padding-bottom: 0;
 }
-.birthform .inputBox{
-    width:100%;
-    margin:0;
-} 
+.birthform .inputBox {
+  width: 100%;
+  margin: 0;
+}
 .agreement {
-    padding-bottom: 0;
+  padding-bottom: 0;
 }
-.agreement .agreecheck{
-    padding-bottom: 0;
-    display: flex;
-    justify-content: start;
+.agreement .agreecheck {
+  padding-bottom: 0;
+  display: flex;
+  justify-content: start;
 }
-.agreecheck div{
-    cursor: pointer;
-    width:auto;
-    margin:0;
-    text-decoration: underline;
+.agreecheck div {
+  cursor: pointer;
+  width: auto;
+  margin: 0;
+  text-decoration: underline;
 }
-.agreecheck input{
-    width:auto;
-    margin:0;
+.agreecheck input {
+  width: auto;
+  margin: 0;
 }
-.submit-btn{
-    display: grid;
-    grid-gap:10px;
-    grid-template-columns: 1fr 1fr;
+.submit-btn {
+  display: grid;
+  grid-gap: 10px;
+  grid-template-columns: 1fr 1fr;
 }
-.submit-btn button{
-    width:100%;
-    margin:0;
-    background:var(--main-primary-color);
-    color:#fff;
-    border:none;
-    font-size:1.2rem;
-    padding:15px 0;
-    cursor: pointer;
+.submit-btn button {
+  width: 100%;
+  margin: 0;
+  background: var(--main-primary-color);
+  color: #fff;
+  border: none;
+  font-size: 1.2rem;
+  padding: 15px 0;
+  cursor: pointer;
 }
 
-.tag{
-    margin-right:3px;
-    background:#ddd;
-    border:1px solid #999;
-    border-radius: 10px;
-    color:#888;
-    text-align:center;
-    padding:3px 5px;
-    display: inline-block;
-    margin-bottom:5px;
+.tag {
+  margin-right: 3px;
+  background: #ddd;
+  border: 1px solid #999;
+  border-radius: 10px;
+  color: #888;
+  text-align: center;
+  padding: 3px 5px;
+  display: inline-block;
+  margin-bottom: 5px;
 }
-.tag .close-btn{
-    padding:0;
-    cursor: pointer;
-    display: inline-block;
-    font-size: 0.9rem;
-    margin:auto 5px;
-    border:1px solid #999;
-    width:1rem;
-    height:1rem;
-    line-height: 1rem;
-    border-radius: 50px;
+.tag .close-btn {
+  padding: 0;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 0.9rem;
+  margin: auto 5px;
+  border: 1px solid #999;
+  width: 1rem;
+  height: 1rem;
+  line-height: 1rem;
+  border-radius: 50px;
 }
-input.input-favorite{
-    display: inline-block;
-    width:auto;
+input.input-favorite {
+  display: inline-block;
+  width: auto;
 }
-input.input-favorite:focus
-{
-    outline-width:0;
+input.input-favorite:focus {
+  outline-width: 0;
 }

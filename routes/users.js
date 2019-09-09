@@ -30,25 +30,28 @@ const adapter = new FileAsync('db.json');
  * @apiSuccessExample Success-Response:
  * HTTP/1.1 204 No Content
  */
-router.post('/signin', createSession, (req, res) => {
-  res.cookie('sess_id', req.sessId, req.cookieOption);
-
+router.post('/signin', createSession, (req, res, next) => {
   const user = users.userModel(req.body);
 
-  low(adapter).then((db) => {
-    db.set(`users.${user.id}`, user).write();
-    db.set(`sessions.${req.sessId}`, {
-      cookie: req.cookieOption,
-      user_id: user.id,
-    }).write();
-  });
-
-  res.status(204).end();
+  low(adapter)
+    .then((db) => {
+      db.set(`users.${user.id}`, user).write();
+      db.set(`sessions.${req.sessId}`, {
+        cookie: req.cookieOption,
+        user_id: user.id,
+      }).write();
+    })
+    .then(() => {
+      res.status(204).end();
+    })
+    .catch((err) => {
+      next(err);
+    });
 });
 
 // 로그인 세션 체크
 /**
- * @api {get} /login Get Session
+ * @api {get} /users/login Get Session
  * @apiName Check Session
  * @apiGroup User
  *
@@ -62,18 +65,23 @@ router.post('/signin', createSession, (req, res) => {
  * HTTP/1.1 204 NO Content
  */
 router.get('/login', (req, res, next) => {
-  low(adapter).then((db) => {
-    const sess = db
-      .get('sessions')
-      .get(req.cookies.sess_id)
-      .value();
-
-    if (sess === undefined) {
-      res.status(204).end();
-    } else {
-      res.status(200).send({ id: sess.user_id });
-    }
-  });
+  low(adapter)
+    .then((db) => {
+      return db
+        .get('sessions')
+        .get(req.cookies.sess_id)
+        .value();
+    })
+    .then((session) => {
+      if (session) {
+        res.status(200).send({ id: session.user_id });
+      } else {
+        res.status(204).end();
+      }
+    })
+    .catch((err) => {
+      next(err);
+    });
 });
 
 // 로그인 - 유저 체크, 세션 생성
@@ -95,26 +103,28 @@ router.get('/login', (req, res, next) => {
  * @apiErrorExample Error-Response:
  * HTTP/1.1 204 No Content
  */
-router.post('/login', createSession, (req, res) => {
-  low(adapter).then((db) => {
-    const user = db
-      .get('users')
-      .get(req.body.id)
-      .value();
+router.post('/login', createSession, (req, res, next) => {
+  low(adapter)
+    .then((db) => {
+      const user = db
+        .get('users')
+        .get(req.body.id)
+        .value();
 
-    if (user === undefined || user.pw !== passwordHash(req.body.pw)) {
-      res.status(204).end();
-    } else {
-      res.cookie('sess_id', req.sessId, req.cookieOption);
+      if (user === undefined || user.pw !== passwordHash(req.body.pw)) {
+        res.status(204).end();
+      } else {
+        db.set(`sessions.${req.sessId}`, {
+          cookie: req.cookieOption,
+          user_id: user.id,
+        }).write();
 
-      db.set(`sessions.${req.sessId}`, {
-        cookie: req.cookieOption,
-        user_id: user.id,
-      }).write();
-
-      res.status(200).send({ status: 'login sucsess' });
-    }
-  });
+        res.status(200).send({ status: 'login sucsess' });
+      }
+    })
+    .catch((err) => {
+      next(err);
+    });
 });
 
 // 유저 조회 (아이디 중복체크)

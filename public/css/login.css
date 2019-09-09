@@ -1,29 +1,29 @@
-.wrap-login{
-    width:100vw;
-    height:100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.wrap-login {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-.loginbox{
-    width:430px;
+.loginbox {
+  width: 430px;
 }
-.btn-success.login-btn{
-    margin-top:50px;
-    padding: 10px 0;
-    width:100%;
-    font-size: 1.2rem;
+.btn-success.login-btn {
+  margin-top: 50px;
+  padding: 10px 0;
+  width: 100%;
+  font-size: 1.2rem;
 }
-#logIn-form div{
-    margin:0;
-    padding:0;
+#logIn-form div {
+  margin: 0;
+  padding: 0;
 }
-#logIn-form .id{
-    margin-bottom:10px;
+#logIn-form .id {
+  margin-bottom: 10px;
 }
-#logIn-form .pw{
-    margin-bottom:10px;
+#logIn-form .pw {
+  margin-bottom: 10px;
 }
-.error{
-    color:#f00;
+.error {
+  color: #f00;
 }
