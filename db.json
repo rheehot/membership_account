@@ -17,16 +17,16 @@
       "email": "",
       "favorite": "",
       "reg_date": 1568014365803
+    },
+    "dofl5576": {
+      "id": "dofl5576",
+      "pw": "nDzjaIPIot7W4C74hgeClMrMg0iyGmvMwXoz35J3lZDo25B7A+EXS4XA5V3L17bOE3/66p/+PaYYVIHKsRo/uQ==",
+      "name": "",
+      "birth": "Sun Dec 31 1899 00:00:00 GMT+0827 (한국 표준시)",
+      "email": "",
+      "favorite": "",
+      "reg_date": 1568015489161
     }
   },
-  "sessions": {
-    "aeffcc10-d2d4-11e9-9ba6-e3b4338cc5e0": {
-      "cookie": {
-        "maxAge": 7200000,
-        "httpOnly": true,
-        "expires": "2019-09-09T09:37:32.242Z"
-      },
-      "user_id": "dofl"
-    }
-  }
+  "sessions": {}
 }

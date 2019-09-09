@@ -21,9 +21,9 @@ const validator = {
     });
   },
   registerEvent(target, validObj, event = 'change', tag) {
-    target.addEventListener(event, (e) => {
+    target.addEventListener(event, async (e) => {
       const arg = tag !== undefined ? tag.tagList.length : target.value;
-      const valid = validObj.validate(arg);
+      const valid = await validObj.validate(arg);
       this.data[validObj.name] = valid.status !== 'good' ? valid.msg : null;
       showMsg(validObj, valid);
     });
@@ -68,14 +68,30 @@ const validID = {
     },
     good: { status: 'good', msg: '사용가능한 아이디입니다.' },
   },
-  validate(id) {
+  async validate(id) {
+    const duplication = await this.checkDuplication(id);
     if (!this.regExpId.test(id)) return this.msg.wrong;
-    if (this.checkDuplication(id)) return this.msg.taken;
+    if (duplication) return this.msg.taken;
     return this.msg.good;
   },
-  checkDuplication(id) {
-    const data = users.map((d) => d.id);
-    return data.includes(id);
+  async checkDuplication(id) {
+    // const data = users.map((d) => d.id);
+    const options = {
+      method: 'GET',
+      cache: 'no-cache',
+      mode: 'same-origin',
+      credentials: 'include',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+    };
+    const response = await fetch(`/api/users/id/${id}`, options);
+    console.log(response.status);
+    if (response.status === 409) {
+      return true;
+    }
+    return false;
   },
   empty(data, target, option) {
     data[this.name] = target.value === '' ? option || 'empty' : data[this.name];

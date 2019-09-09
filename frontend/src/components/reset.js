@@ -1,4 +1,4 @@
-const Reset = /*html*/`
+const Reset = /* html */ `
 <div class="wrap-modal">
         <div class="modalbox">
             <div class="content-reset">모든 내용을 새로 작성하시겠습니까?</div>
@@ -7,5 +7,5 @@ const Reset = /*html*/`
                 <button class="reset-btn">확인</button>
             </div>
         </div>
-</div>`
+</div>`;
 export default Reset;

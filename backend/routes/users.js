@@ -168,10 +168,11 @@ router.get('/id/:userId', (req, res, next) => {
         .value();
     })
     .then((user) => {
+      console.log(user);
       if (user) {
-        res.status(204).end();
-      } else {
         res.status(409).end();
+      } else {
+        res.status(204).end();
       }
     })
     .catch((err) => {
