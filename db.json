@@ -1,23 +1,32 @@
 {
   "users": {
-    "aaa": {
-      "id": "aaa",
-      "password": "4JjzDQ+iSQuXtHU1JmHBLS7jPXmxmo8i6TGY3NPjtRvDeVFymBHzctf5j98KDLJq7LPFQ9xjzQ8ri5gdBvYkFg==",
+    "dofl": {
+      "id": "dofl",
+      "pw": "OUXVj7nPtZtnLlBVWWqM79a7AEmzTNUw59x6IUiIy7ScI+NjWBMojXVTYCq+Lk8jFMJY8kLPAvbO5pkygwahag==",
       "name": "",
       "birth": "Sun Dec 31 1899 00:00:00 GMT+0827 (한국 표준시)",
       "email": "",
       "favorite": "",
-      "reg_date": 1568012586606
+      "reg_date": 1568013875887
     },
-    "ddd": {
-      "id": "ddd",
-      "password": "4JjzDQ+iSQuXtHU1JmHBLS7jPXmxmo8i6TGY3NPjtRvDeVFymBHzctf5j98KDLJq7LPFQ9xjzQ8ri5gdBvYkFg==",
+    "ssiba": {
+      "id": "ssiba",
+      "pw": "oyhvZxn4Ak5jJAeUcZlxRlN9iVW6IVyLmwlBNmWVEtS+wRlwP0Buxcga4ST6J+9se2G/Ynk2xhLT80KCADa10g==",
       "name": "",
       "birth": "Sun Dec 31 1899 00:00:00 GMT+0827 (한국 표준시)",
       "email": "",
       "favorite": "",
-      "reg_date": 1568012595480
+      "reg_date": 1568014365803
     }
   },
-  "sessions": {}
+  "sessions": {
+    "aeffcc10-d2d4-11e9-9ba6-e3b4338cc5e0": {
+      "cookie": {
+        "maxAge": 7200000,
+        "httpOnly": true,
+        "expires": "2019-09-09T09:37:32.242Z"
+      },
+      "user_id": "dofl"
+    }
+  }
 }

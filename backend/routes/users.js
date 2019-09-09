@@ -23,7 +23,7 @@ router.get('/signin', (req, res) => {
  * @apiParamExample {json} User Action:
  * {
  *     "id": "user1",
- *     "password": "qwerty",
+ *     "pw": "qwerty",
  *     "name": "aer4ee",
  *     "birth": "1567601355922",
  *     "gender": "female",
@@ -45,7 +45,7 @@ router.post('/signin', createSession, (req, res) => {
   res.cookie('sess_id', req.sessId, req.cookieOption);
   const user = users.userModel({
     id: req.body.id,
-    password: passwordHash(req.body.password),
+    pw: passwordHash(req.body.pw),
     name: req.body.name,
     birth: req.body.birth,
     gender: req.body.gender,
@@ -111,7 +111,7 @@ router.get('/login', (req, res, next) => {
  * @apiParamExample {json} User Action:
  * {
  *     "id": "user1",
- *     "password": "qwerty",
+ *     "pw": "qwerty",
  * }
  *
  * @apiSuccessExample Success-Response:
@@ -127,10 +127,13 @@ router.post('/login', createSession, (req, res) => {
       .value();
     // 유저아이디 없음
     if (user === undefined) {
+      console.log('아이디없음');
       res.status(403).end();
     }
     // 유저아이디는 있으나 비번 틀림
-    if (user.password !== passwordHash(req.body.pw)) {
+    if (user.pw !== passwordHash(req.body.pw)) {
+      console.log('비번틀림');
+      console.log(passwordHash(req.body.pw));
       res.status(403).end();
     } else {
       // TODO: 쿠키발행, 세션디비 저장 로직을 미들웨어로 분리하기
@@ -139,7 +142,7 @@ router.post('/login', createSession, (req, res) => {
         cookie: req.cookieOption,
         user_id: user.id,
       }).write();
-      res.status(204).end();
+      res.status(200).send('of');
     }
   });
 });

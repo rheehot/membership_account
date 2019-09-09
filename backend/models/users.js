@@ -1,6 +1,6 @@
 const userModel = (result) => ({
   id: result.id,
-  password: result.password,
+  pw: result.pw,
   name: result.name,
   birth: result.birth,
   gender: result.gender,

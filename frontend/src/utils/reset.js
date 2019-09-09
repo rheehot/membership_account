@@ -26,8 +26,8 @@ const reset = {
     const target = document.querySelector('.btn-reset .reset-btn');
     target.addEventListener('click', (e) => {
       this.removeReset();
-      location.reload();
+      window.location.reload();
     });
   },
 };
-export { reset };
+export default reset;

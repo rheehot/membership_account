@@ -1,4 +1,19 @@
-import getData from '../utils/loigin.js';
+const postData = async (url = '', data = {}) => {
+  const options = {
+    method: 'POST',
+    cache: 'no-cache',
+    mode: 'same-origin',
+    credentials: 'include',
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(data),
+  };
+  const response = await fetch(url, options);
+  return response;
+};
+
 const logIn = {
   render: async () => {
     const view = /* html */ `
@@ -23,20 +38,24 @@ const logIn = {
         `;
     return view;
   },
-  after_render: async () => {
+  after_render: async (user) => {
+    if (user !== undefined) {
+      window.location.href = '#/';
+    }
     const target = document.querySelector('.login-btn');
     target.addEventListener('click', async () => {
       const id = document.querySelector('.input-id').value;
       const pw = document.querySelector('.input-pw').value;
       const msg = document.querySelector('.error');
-      const response = await getData({ id, pw });
-
-      if (response) {
-        window.location.href = '#/';
-      } else {
-        msg.innerHTML = '일치하는 아이디 패스워드가 없습니다.';
-      }
+      await postData('/api/users/login', { id, pw }).then((response) => {
+        if (response.status === 403) {
+          msg.innerHTML = '일치하는 아이디 패스워드가 없습니다.';
+        } else {
+          window.location.href = '#/';
+        }
+      });
     });
   },
 };
+
 export default logIn;

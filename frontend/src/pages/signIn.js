@@ -1,7 +1,7 @@
 import { validator } from '../utils/validate.js';
 import tag from '../utils/tag.js';
 import { agreement } from '../utils/agree.js';
-import { reset } from '../utils/reset.js';
+import reset from '../utils/reset.js';
 import join from '../utils/join.js';
 
 const signIn = {
