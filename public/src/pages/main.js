@@ -1,4 +1,5 @@
 import { deleteData } from '../utils/dataExchange.js';
+import triggerEvent from '../utils/eventTrigger.js';
 
 const main = {
   /**
@@ -14,8 +15,8 @@ const main = {
             <div class="wrap-main">
                 <h1>Hello ${userId}!</h1>
                 <div class="btnBox login">
-                    <a href="#/signin" class="btn signin-btn">회원가입</a>
-                    <a href="#/login" class="btn login-btn">로그인</a>
+                    <div class="btn signin-btn">회원가입</div>
+                    <div class="btn login-btn">로그인</div>
                 </div>
                 <div class="btnBox logout">
                     <div class="btn logout-btn">로그아웃</div>
@@ -35,6 +36,8 @@ const main = {
     const loginBox = document.querySelector('.btnBox.login');
     const logoutBox = document.querySelector('.btnBox.logout');
     const logoutBtn = document.querySelector('.logout-btn');
+    const signinBtn = document.querySelector('.signin-btn');
+    const loginBtn = document.querySelector('.login-btn');
 
     if (user !== undefined) {
       loginBox.style.display = 'none';
@@ -46,8 +49,17 @@ const main = {
 
     logoutBtn.addEventListener('click', () => {
       deleteData('api/users/logout').then(() => {
-        window.location.href = '/';
+        window.history.pushState(null, null, '/');
+        triggerEvent(window, 'routing');
       });
+    });
+    signinBtn.addEventListener('click', () => {
+      window.history.pushState(null, null, '/signin');
+      triggerEvent(window, 'routing');
+    });
+    loginBtn.addEventListener('click', () => {
+      window.history.pushState(null, null, '/login');
+      triggerEvent(window, 'routing');
     });
   },
 };

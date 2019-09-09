@@ -1,4 +1,5 @@
 import Join from '../components/join.js';
+import triggerEvent from './eventTrigger.js';
 import { postData } from './dataExchange.js';
 
 const join = {
@@ -54,7 +55,8 @@ const join = {
     });
 
     await postData('/api/users/signin', data);
-    window.location.href = '/';
+    window.history.pushState(null, null, '/');
+    triggerEvent(window, 'routing');
   },
 };
 

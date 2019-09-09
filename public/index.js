@@ -1,8 +1,8 @@
+// * inspired from vanillajs-spa Copyright 2018, Rishav Sharan
 // pages
 import signIn from './src/pages/signIn.js';
 import logIn from './src/pages/login.js';
 import main from './src/pages/main.js';
-import error404 from './src/pages/err404.js';
 import Header from './src/components/header.js';
 import Footer from './src/components/footer.js';
 
@@ -17,19 +17,27 @@ const routes = {
 };
 
 /**
- * inspired from vanillajs-spa Copyright 2018, Rishav Sharan
+ * Calls page component passing session.
+ *
+ * @param {} No param
+ * @return {} No return.
+ */
+const commonView = async () => {
+  const header = null || document.getElementById('header_container');
+  const footer = null || document.getElementById('footer_container');
+  header.innerHTML = await Header.render();
+  await Header.afterRender();
+  footer.innerHTML = await Footer.render();
+};
+commonView();
+/**
  * Calls page component passing session.
  *
  * @param {} No param
  * @return {} No return.
  */
 const router = async () => {
-  const header = null || document.getElementById('header_container');
   const content = null || document.getElementById('page_container');
-  const footer = null || document.getElementById('footer_container');
-
-  header.innerHTML = await Header.render();
-  footer.innerHTML = await Footer.render();
 
   const request = parseURL();
   const parsedURL = request ? `/${request}` : '/';
@@ -42,11 +50,12 @@ const router = async () => {
       return undefined;
     });
 
-  const page = routes[parsedURL] ? routes[parsedURL] : error404;
+  const page = routes[parsedURL];
 
   content.innerHTML = await page.render(user);
   await page.afterRender(user);
 };
 
-window.addEventListener('hashchange', router);
+window.addEventListener('routing', router);
+window.addEventListener('popstate', router);
 window.addEventListener('load', router);

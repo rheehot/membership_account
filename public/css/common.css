@@ -23,10 +23,9 @@ body {
   padding: 0;
   color: #fff;
   font-size: 1.3rem;
+  cursor: pointer;
 }
-.header h1 a {
-  color: #fff;
-}
+
 .footer {
   margin-top: 50px;
   background: #fff;

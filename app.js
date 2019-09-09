@@ -19,6 +19,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(favicon(path.join(__dirname, 'public/images', 'favicon.ico')));
 
 app.use('/', express.static('./public'));
+app.use('/signin', express.static('./public'));
+app.use('/login', express.static('./public'));
+
 app.use('/api', express.static('./apidoc'));
 app.use('/api/users', usersRouter);
 

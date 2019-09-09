@@ -9,6 +9,16 @@
       "email": "dofl5576@gmail.com",
       "favorite": "asdf,asdf,asdf",
       "reg_date": 1568045641912
+    },
+    "bear1": {
+      "id": "bear1",
+      "pw": "xnHSrDLerogU7T/71XckkVUKd/dCwVuOvrKfwF/gp7pFn/NUudHqwCBakN9QxjrT7iubYbUbZsUZJJjbNuBuRg==",
+      "name": "조애리",
+      "birth": "Wed Apr 28 1999 00:00:00 GMT+0900 (한국 표준시)",
+      "gender": "여자",
+      "email": "dofl5576@gmail.com",
+      "favorite": "ads,adsf,adf",
+      "reg_date": 1568055846779
     }
   },
   "sessions": {}

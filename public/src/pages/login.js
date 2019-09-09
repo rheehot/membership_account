@@ -1,4 +1,5 @@
 import { postData } from '../utils/dataExchange.js';
+import triggerEvent from '../utils/eventTrigger.js';
 
 const logIn = {
   /**
@@ -38,18 +39,20 @@ const logIn = {
    */
   afterRender: async (user) => {
     if (user !== undefined) {
-      window.location.href = '#/';
+      window.history.pushState(null, null, '/');
+      await triggerEvent(window, 'routing');
     }
     const target = document.querySelector('.login-btn');
     target.addEventListener('click', async () => {
       const id = document.querySelector('.input-id').value;
       const pw = document.querySelector('.input-pw').value;
       const msg = document.querySelector('.error');
-      await postData('/api/users/login', { id, pw }).then((response) => {
+      await postData('/api/users/login', { id, pw }).then(async (response) => {
         if (response.status === 204) {
           msg.innerHTML = '일치하는 아이디 패스워드가 없습니다.';
         } else {
-          window.location.href = '#/';
+          await window.history.pushState(null, null, '/');
+          await triggerEvent(window, 'routing');
         }
       });
     });
