@@ -19,7 +19,62 @@
       "email": "dofl5576@gmail.com",
       "favorite": "ads,adsf,adf",
       "reg_date": 1568055846779
+    },
+    "wlstnr5576": {
+      "id": "wlstnr5576",
+      "pw": "pFM7EdunFXCSqlgOTABUEMtmLWBFg4MYdjhSBdfQiDaz+Shdpp5hFnHFYy/iIHI4a5sxJD8b7SR8qxg0Vye65g==",
+      "name": "노진숙",
+      "birth": "Sat Apr 22 1967 00:00:00 GMT+0900 (한국 표준시)",
+      "gender": "여자",
+      "email": "slstnr@gmaoilco",
+      "favorite": "ccm,ddd,qqq",
+      "reg_date": 1568068458001
+    },
+    "dofldofl": {
+      "id": "dofldofl",
+      "pw": "pFM7EdunFXCSqlgOTABUEMtmLWBFg4MYdjhSBdfQiDaz+Shdpp5hFnHFYy/iIHI4a5sxJD8b7SR8qxg0Vye65g==",
+      "name": "ㅂ",
+      "birth": "Wed Apr 28 1999 00:00:00 GMT+0900 (한국 표준시)",
+      "gender": "남자",
+      "email": "dofl5576@gmail.com",
+      "favorite": "adsf,asdf,saf",
+      "reg_date": 1568068549075
+    },
+    "dofldofl33": {
+      "id": "dofldofl33",
+      "pw": "pFM7EdunFXCSqlgOTABUEMtmLWBFg4MYdjhSBdfQiDaz+Shdpp5hFnHFYy/iIHI4a5sxJD8b7SR8qxg0Vye65g==",
+      "name": "whdofl",
+      "birth": "Thu Apr 28 1994 00:00:00 GMT+0900 (KST)",
+      "gender": "여자",
+      "email": "dofl@gmail.com",
+      "favorite": "as,ff,and",
+      "reg_date": 1568069726925
     }
   },
-  "sessions": {}
+  "sessions": {
+    "c1b14f80-d353-11e9-9997-a1fc635c4387": {
+      "cookie": {
+        "maxAge": 7200000,
+        "httpOnly": true,
+        "expires": "2019-09-10T00:47:09.688Z"
+      },
+      "user_id": "dofldofl"
+    },
+    "ea1180c0-d354-11e9-8515-7336d4a1cc46": {
+      "cookie": {
+        "maxAge": 7200000,
+        "httpOnly": true,
+        "expires": "2019-09-10T00:55:26.925Z"
+      },
+      "user_id": "dofldofl33"
+    },
+    "b5ebfc10-d365-11e9-8c3a-157cf4af6eb7": {
+      "cookie": {
+        "maxAge": 7200000,
+        "httpOnly": true,
+        "expires": "2019-09-10T02:55:40.881Z"
+      },
+      "user_id": "dofldofl"
+    }
+  }
 }

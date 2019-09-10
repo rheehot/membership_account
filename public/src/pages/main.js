@@ -1,5 +1,5 @@
+import routesPage from '../utils/routesPage.js';
 import { deleteData } from '../utils/dataExchange.js';
-import triggerEvent from '../utils/eventTrigger.js';
 
 const main = {
   /**
@@ -8,7 +8,7 @@ const main = {
    * @param {user} response from session check api.
    * @return {string} The main view.
    */
-  render: async (user) => {
+  async render(user) {
     const userId = user !== undefined ? user.id : 'There';
 
     const view = /* html */ `
@@ -32,7 +32,7 @@ const main = {
    * @param {object} user response from session check api.
    * @return No return
    */
-  afterRender: async (user) => {
+  async afterRender(user) {
     const loginBox = document.querySelector('.btnBox.login');
     const logoutBox = document.querySelector('.btnBox.logout');
     const logoutBtn = document.querySelector('.logout-btn');
@@ -49,17 +49,14 @@ const main = {
 
     logoutBtn.addEventListener('click', () => {
       deleteData('api/users/logout').then(() => {
-        window.history.pushState(null, null, '/');
-        triggerEvent(window, 'routing');
+        routesPage('/');
       });
     });
     signinBtn.addEventListener('click', () => {
-      window.history.pushState(null, null, '/signin');
-      triggerEvent(window, 'routing');
+      routesPage('/signin');
     });
     loginBtn.addEventListener('click', () => {
-      window.history.pushState(null, null, '/login');
-      triggerEvent(window, 'routing');
+      routesPage('/login');
     });
   },
 };

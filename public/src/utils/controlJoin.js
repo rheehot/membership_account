@@ -55,8 +55,8 @@ const join = {
     });
 
     await postData('/api/users/signin', data);
-    window.history.pushState(null, null, '/');
-    triggerEvent(window, 'routing');
+    await window.history.pushState(null, null, '/');
+    await triggerEvent(window, 'routing');
   },
 };
 
