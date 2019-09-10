@@ -1,5 +1,5 @@
 import Join from '../components/join.js';
-import triggerEvent from './eventTrigger.js';
+import routesPage from './routesPage.js';
 import { postData } from './dataExchange.js';
 
 const join = {
@@ -55,8 +55,7 @@ const join = {
     });
 
     await postData('/api/users/signin', data);
-    await window.history.pushState(null, null, '/');
-    await triggerEvent(window, 'routing');
+    await routesPage('/');
   },
 };
 

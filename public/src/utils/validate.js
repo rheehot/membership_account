@@ -3,12 +3,7 @@ import { getData } from './dataExchange.js';
 
 const validator = {
   errorMsg: {},
-  /**
-   * passes each validation object for attatching event
-   *
-   * @param {object} controlTag module for tag validation
-   * @return {} No return.
-   */
+
   init(tag) {
     this.attatchEvent(validID);
     this.attatchEvent(validPW);
@@ -19,12 +14,6 @@ const validator = {
     this.attatchEvent(validFavorite, 'keyup', tag);
   },
 
-  /**
-   * iterates dom array property of validation object registering event
-   *
-   * @param {object, string, object} validation object, event type, controlTag module
-   * @return {} No return.
-   */
   attatchEvent(validObj, event, tag) {
     validObj.dom.forEach((classname) => {
       const target = document.querySelector(`.${classname}`);
@@ -32,13 +21,6 @@ const validator = {
     });
   },
 
-  /**
-   * Registers event to each input DOM, add error message to errorMsg object
-   *
-   * @param {object, object, string, object}
-   * DOM object, validation object, event type, controlTag module
-   * @return {} No return.
-   */
   registerEvent(target, validObj, event = 'change', tag) {
     target.addEventListener(event, async (e) => {
       const input = tag !== undefined ? tag.tagList.length : target.value;
@@ -47,12 +29,7 @@ const validator = {
       showMsg(validObj, valid);
     });
   },
-  /**
-   * iterates dom array property of validation object for checking empty value.
-   *
-   * @param {object, string} validation object, error message option
-   * @return {} No return.
-   */
+
   emptyCheck(validObj, option) {
     validObj.dom.forEach((classname) => {
       const target = document.querySelector(`.${classname}`);
@@ -60,12 +37,7 @@ const validator = {
       validObj.empty(this.errorMsg, target, emptyMsg);
     });
   },
-  /**
-   * init emptyCheck function about each validation object
-   *
-   * @param {} No param
-   * @return {} No return.
-   */
+
   emptyCheckInit() {
     this.emptyCheck(validID);
     this.emptyCheck(validPW);
@@ -79,12 +51,6 @@ const validator = {
   },
 };
 
-/**
- * appends error msg into DOM with suitable color.
- *
- * @param {object, object} validation object, validation result object.
- * @return {} No return.
- */
 const showMsg = (validObj, validResult) => {
   const msgField = document.querySelector(`.${validObj.field} .error`);
   msgField.innerHTML = validResult.msg;

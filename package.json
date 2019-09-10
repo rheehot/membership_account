@@ -8,8 +8,8 @@
   "scripts": {
     "start": "nodemon app.js --ignore db.json",
     "release": "standard-version",
-    "test": "mocha ./backend/test/*.spec.js",
-    "apidoc": "apidoc -i backend/ -o apidoc/ -e node_modules/"
+    "test": "mocha ./test/*.spec.js",
+    "apidoc": "apidoc -i / -o apidoc/ -e node_modules/"
   },
   "dependencies": {
     "apidoc": "^0.17.7",
