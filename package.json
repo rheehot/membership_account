@@ -34,6 +34,8 @@
   "devDependencies": {
     "@commitlint/cli": "^8.1.0",
     "@commitlint/config-conventional": "^8.1.0",
+    "chai": "^4.2.0",
+    "chai-http": "^4.3.0",
     "eslint": "^6.3.0",
     "eslint-config-airbnb-base": "^14.0.0",
     "eslint-plugin-import": "^2.18.2",
@@ -41,7 +43,8 @@
     "lint-staged": "^9.2.5",
     "mocha": "^6.2.0",
     "prettier": "^1.18.2",
-    "standard-version": "^7.0.0"
+    "standard-version": "^7.0.0",
+    "supertest": "^4.0.2"
   },
   "husky": {
     "hooks": {
