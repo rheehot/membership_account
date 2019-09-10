@@ -1,4 +1,5 @@
 import Reset from '../components/reset.js';
+import routesPage from './routesPage.js';
 
 const reset = {
   init() {
@@ -24,9 +25,9 @@ const reset = {
   },
   doReset() {
     const target = document.querySelector('.btn-reset .reset-btn');
-    target.addEventListener('click', (e) => {
+    target.addEventListener('click', async (e) => {
       this.removeReset();
-      window.location.reload();
+      await routesPage('/signin');
     });
   },
 };

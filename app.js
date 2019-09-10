@@ -19,6 +19,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(favicon(path.join(__dirname, 'public/images', 'favicon.ico')));
 
 app.use('/', express.static('./public'));
+app.use('/signin', express.static('./public'));
+app.use('/login', express.static('./public'));
+
 app.use('/api', express.static('./apidoc'));
 app.use('/api/users', usersRouter);
 
@@ -26,7 +29,7 @@ app.use((req, res, next) => {
   next(createError(404));
 });
 
-app.use((err, req, res) => {
+app.use((err, req, res, next) => {
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
 

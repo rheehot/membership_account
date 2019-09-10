@@ -11,7 +11,7 @@ const signIn = {
    * @param No param
    * @return {string} The signin view.
    */
-  render: async () => {
+  async render() {
     const view = /* html */ `
         <div class="wrap-signIn">
         <h1>회원가입</h1>
@@ -134,12 +134,14 @@ const signIn = {
    * @param No param
    * @return No return
    */
-  afterRender: async () => {
+  async afterRender() {
     controlTag.init();
+    validator.init(controlTag);
+
     controlAgreement.init();
     controlReset.init();
+
     controlJoin.init(validator);
-    validator.init(controlTag);
   },
 };
 export default signIn;

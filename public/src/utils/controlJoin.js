@@ -1,4 +1,5 @@
 import Join from '../components/join.js';
+import routesPage from './routesPage.js';
 import { postData } from './dataExchange.js';
 
 const join = {
@@ -54,7 +55,7 @@ const join = {
     });
 
     await postData('/api/users/signin', data);
-    window.location.href = '/';
+    await routesPage('/');
   },
 };
 
